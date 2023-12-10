@@ -3,6 +3,7 @@ package b.softuni.surfApp.model.entity;
 import b.softuni.surfApp.model.enums.MoodEnum;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.time.LocalDate;
 
@@ -12,8 +13,7 @@ public class CommentEntity extends BaseEntity {
 
     private LocalDate creationDate;
     private MoodEnum mood;
-
-    private CampEntity camp;
+    @ManyToOne
     private UserEntity creator;
 
     public CommentEntity() {}
@@ -34,14 +34,6 @@ public class CommentEntity extends BaseEntity {
         this.mood = mood;
     }
 
-    public CampEntity getCamp() {
-        return camp;
-    }
-
-    public void setCamp(CampEntity camp) {
-        this.camp = camp;
-    }
-
     public UserEntity getCreator() {
         return creator;
     }
@@ -49,4 +41,6 @@ public class CommentEntity extends BaseEntity {
     public void setCreator(UserEntity creator) {
         this.creator = creator;
     }
+
+
 }

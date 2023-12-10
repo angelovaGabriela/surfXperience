@@ -1,6 +1,7 @@
 package b.softuni.surfApp.model.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.time.LocalDate;
 
@@ -12,7 +13,9 @@ public class StoryEntity extends BaseEntity {
     private LocalDate creationDate;
     private String storyText;
 
+    @ManyToOne
     private CampEntity camp;
+    @ManyToOne
     private UserEntity creator;
 
     public StoryEntity() {}
@@ -48,4 +51,6 @@ public class StoryEntity extends BaseEntity {
     public void setCreator(UserEntity creator) {
         this.creator = creator;
     }
+
+
 }

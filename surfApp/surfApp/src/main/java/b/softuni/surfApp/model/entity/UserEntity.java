@@ -27,20 +27,36 @@ public class UserEntity extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private UserProfileEnum userProfile;
 
-    private PictureEntity picture;
+    @OneToOne
+    private PictureEntity profilePicture;
 
+    @OneToMany
     private Set<StoryEntity> stories;
 
     @ManyToMany
     private Set<UserRoleEntity> userRoles;
 
+    @OneToMany
     private Set<EquipmentEntity> equipmentProvided;
+
+    @OneToMany
     private Set<EquipmentEntity> equipmentNeeded;
 
-    private CampEntity currentCamp;
+    @ManyToMany
     private Set<CampEntity> participated;
+
+    @ManyToOne
+    private CampEntity currentCamp;
+
+    @ManyToMany
     private Set<CampEntity> likedCamps;
+
+    @OneToMany
     private Set<CommentEntity> myComments;
+
+    // created by me if I have a creator profile type
+    @OneToMany
+    private Set<CampEntity> myCamps;
 
 
     public UserEntity() {}
@@ -137,12 +153,12 @@ public class UserEntity extends BaseEntity {
         this.userProfile = userProfile;
     }
 
-    public PictureEntity getPicture() {
-        return picture;
+    public PictureEntity getProfilePicture() {
+        return profilePicture;
     }
 
-    public void setPicture(PictureEntity picture) {
-        this.picture = picture;
+    public void setProfilePicture(PictureEntity profilePicture) {
+        this.profilePicture = profilePicture;
     }
 
     public Set<StoryEntity> getStories() {
@@ -208,4 +224,14 @@ public class UserEntity extends BaseEntity {
     public void setMyComments(Set<CommentEntity> myComments) {
         this.myComments = myComments;
     }
+
+    public Set<CampEntity> getMyCamps() {
+        return myCamps;
+    }
+
+    public void setMyCamps(Set<CampEntity> myCamps) {
+        this.myCamps = myCamps;
+    }
+
+
 }

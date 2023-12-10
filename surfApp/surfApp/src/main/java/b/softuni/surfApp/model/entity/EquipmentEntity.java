@@ -2,10 +2,7 @@ package b.softuni.surfApp.model.entity;
 
 import b.softuni.surfApp.model.enums.EquipmentTypeEnum;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "equipments")
@@ -14,11 +11,15 @@ public class EquipmentEntity extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private EquipmentTypeEnum equipmentType;
 
+    @OneToOne
     private PictureEntity picture;
 
     private String description;
 
     private Boolean haveIt;
+
+    @ManyToOne
+    private UserEntity owner;
 
     public EquipmentEntity() {}
 
@@ -53,4 +54,14 @@ public class EquipmentEntity extends BaseEntity {
     public void setHaveIt(Boolean haveIt) {
         this.haveIt = haveIt;
     }
+
+    public UserEntity getOwner() {
+        return owner;
+    }
+
+    public void setOwner(UserEntity owner) {
+        this.owner = owner;
+    }
+
+
 }

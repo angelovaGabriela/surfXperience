@@ -2,8 +2,7 @@ package b.softuni.surfApp.model.entity;
 
 import b.softuni.surfApp.model.enums.DifficultyLevelEnum;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -21,17 +20,34 @@ public class CampEntity extends BaseEntity {
     private Integer capacity;
     private DifficultyLevelEnum difficultyLevel;
     private String description;
-
-
-
+    @OneToMany
     private Set<PictureEntity> pictures;
-    private List<CommentEntityt> comments;
+
+    @OneToMany
+    private Set<CommentEntity> comments;
+
+    @OneToMany
     private Set<EquipmentEntity> equipmentProvided;
+
+    @OneToMany
     private Set<EquipmentEntity> equipmentNeeded;
+
+    @ManyToOne
     private UserEntity creator;
-    private Set<UserEntity> participants;
+
+    @ManyToMany
+    private Set<UserEntity> pastParticipants;
+
+    @OneToMany
+    private Set<UserEntity> currentParticipants;
+    @ManyToMany
     private Set<UserEntity> userLikes;
+
+    @ManyToOne
     private CampLocationEntity location;
+
+    @OneToMany
+    private Set<StoryEntity> stories;
 
     public CampEntity() {}
 
@@ -99,11 +115,11 @@ public class CampEntity extends BaseEntity {
         this.pictures = pictures;
     }
 
-    public List<CommentEntityt> getComments() {
+    public Set<CommentEntity> getComments() {
         return comments;
     }
 
-    public void setComments(List<CommentEntityt> comments) {
+    public void setComments(Set<CommentEntity> comments) {
         this.comments = comments;
     }
 
@@ -131,12 +147,12 @@ public class CampEntity extends BaseEntity {
         this.creator = creator;
     }
 
-    public Set<UserEntity> getParticipants() {
-        return participants;
+    public Set<UserEntity> getCurrentParticipants() {
+        return currentParticipants;
     }
 
-    public void setParticipants(Set<UserEntity> participants) {
-        this.participants = participants;
+    public void setCurrentParticipants(Set<UserEntity> currentParticipants) {
+        this.currentParticipants = currentParticipants;
     }
 
     public Set<UserEntity> getUserLikes() {
@@ -154,4 +170,22 @@ public class CampEntity extends BaseEntity {
     public void setLocation(CampLocationEntity location) {
         this.location = location;
     }
+
+    public Set<UserEntity> getPastParticipants() {
+        return pastParticipants;
+    }
+
+    public void setPastParticipants(Set<UserEntity> pastParticipants) {
+        this.pastParticipants = pastParticipants;
+    }
+
+    public Set<StoryEntity> getStories() {
+        return stories;
+    }
+
+    public void setStories(Set<StoryEntity> stories) {
+        this.stories = stories;
+    }
+
+
 }

@@ -27,4 +27,6 @@ public class PictureEntity extends BaseEntity {
     public void setUrl(String url) {
         this.url = url;
     }
+
+
 }
