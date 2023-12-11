@@ -28,7 +28,7 @@ public class DatabaseInit implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         userService.initProfiles();
-//        commentService.initCommentMoods();
+        commentService.initCommentMoods();
 //        equipmentService.initEquipmentTypes();
 //        campService.initCampLevels();
     }
