@@ -1,6 +1,6 @@
 package b.softuni.surfApp.service.impl;
 
-import b.softuni.surfApp.model.entity.UserEntity;
+import b.softuni.surfApp.model.binding.UserRegisterBindingModel;
 import b.softuni.surfApp.model.entity.UserProfileType;
 import b.softuni.surfApp.model.enums.UserProfileEnum;
 import b.softuni.surfApp.repository.UserProfileRepository;
@@ -29,5 +29,10 @@ public class UserServiceImpl implements UserService {
                         this.userProfileRepository.save(profile);
                     });
         }
+    }
+
+    @Override
+    public void registerAndLogin(UserRegisterBindingModel userModel) {
+        //TODO: implement
     }
 }
