@@ -1,5 +1,6 @@
 package b.softuni.surfApp.model.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -9,8 +10,13 @@ import java.util.Set;
 @Table(name = "camp_locations")
 public class CampLocationEntity extends BaseEntity {
 
+    @Column(nullable = false)
     private String country;
+
+    @Column(nullable = false)
     private String city;
+
+    @Column(nullable = false)
     private String address;
     @OneToMany
     private Set<CampEntity> camps;

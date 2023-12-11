@@ -1,13 +1,18 @@
 package b.softuni.surfApp.model.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.util.Objects;
 
 @Entity
 @Table(name = "pictures")
 public class PictureEntity extends BaseEntity {
 
+    @Column(unique = true, nullable = false)
     private String title;
+
+    @Column(nullable = false)
     private String url;
 
     public PictureEntity() {}
@@ -28,5 +33,16 @@ public class PictureEntity extends BaseEntity {
         this.url = url;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PictureEntity that = (PictureEntity) o;
+        return getTitle().equals(that.getTitle()) && getUrl().equals(that.getUrl());
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(getTitle(), getUrl());
+    }
 }

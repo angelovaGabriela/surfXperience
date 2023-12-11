@@ -3,6 +3,7 @@ package b.softuni.surfApp.model.entity;
 import b.softuni.surfApp.model.enums.UserProfileEnum;
 
 import javax.persistence.*;
+import java.util.Objects;
 import java.util.Set;
 
 
@@ -10,20 +11,35 @@ import java.util.Set;
 @Table(name = "users")
 public class UserEntity extends BaseEntity {
 
+    @Column(nullable = false, unique = true)
     private String username;
+    @Column(nullable = false)
     private String password;
+
+    @Column(nullable = false, unique = true)
     private String email;
 
+    @Column(name = "first_name", nullable = false)
     private String firstName;
+    @Column(name = "last_name", nullable = false)
     private String lastName;
+
+    @Column(nullable = false)
     private Integer age;
 
+    @Column(name = "wight_kg", nullable = false)
     private Double weightKg;
+
+    @Column(name = "height_cm", nullable = false)
     private Double heightCm;
 
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String about;
+
+    @Column(name = "can_participate")
     private Boolean canParticipate;
 
+    @Column(name = "user_profile", nullable = false)
     @Enumerated(EnumType.STRING)
     private UserProfileEnum userProfile;
 
@@ -33,7 +49,7 @@ public class UserEntity extends BaseEntity {
     @OneToMany
     private Set<StoryEntity> stories;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private Set<UserRoleEntity> userRoles;
 
     @OneToMany
@@ -233,5 +249,16 @@ public class UserEntity extends BaseEntity {
         this.myCamps = myCamps;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserEntity that = (UserEntity) o;
+        return getUsername().equals(that.getUsername()) && getEmail().equals(that.getEmail());
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(getUsername(), getEmail());
+    }
 }

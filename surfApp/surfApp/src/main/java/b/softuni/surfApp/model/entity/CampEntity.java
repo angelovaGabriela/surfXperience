@@ -6,19 +6,32 @@ import javax.persistence.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
 @Table(name = "camps")
 public class CampEntity extends BaseEntity {
 
+    @Column(nullable = false, unique = true)
     private String name;
+
+    @Column(name = "start_date", nullable = false)
     private LocalDate startDate;
+    @Column(name = "end_date", nullable = false)
     private LocalDate endDate;
 
+    @Column(name = "subscribe_until", nullable = false)
     private LocalDateTime subscribeUntil;
+
+    @Column
     private Integer capacity;
+
+    @Column(name = "difficulty_level", nullable = false)
+    @Enumerated(EnumType.STRING)
     private DifficultyLevelEnum difficultyLevel;
+
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String description;
     @OneToMany
     private Set<PictureEntity> pictures;
@@ -32,7 +45,7 @@ public class CampEntity extends BaseEntity {
     @OneToMany
     private Set<EquipmentEntity> equipmentNeeded;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     private UserEntity creator;
 
     @ManyToMany
@@ -187,5 +200,16 @@ public class CampEntity extends BaseEntity {
         this.stories = stories;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CampEntity that = (CampEntity) o;
+        return getName().equals(that.getName()) && getDifficultyLevel() == that.getDifficultyLevel() && getCreator().equals(that.getCreator());
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getDifficultyLevel(), getCreator());
+    }
 }

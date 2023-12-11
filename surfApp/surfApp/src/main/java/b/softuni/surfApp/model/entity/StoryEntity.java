@@ -1,31 +1,36 @@
 package b.softuni.surfApp.model.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Objects;
 
 
 @Entity
 @Table(name = "stories")
 public class StoryEntity extends BaseEntity {
 
-    private LocalDate creationDate;
+    @Column(name = "creation_moment", nullable = false)
+    private LocalDateTime creationMoment;
+    @Column(name = "story_text", nullable = false, columnDefinition = "TEXT")
     private String storyText;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     private CampEntity camp;
-    @ManyToOne
+    @ManyToOne(optional = false)
     private UserEntity creator;
 
     public StoryEntity() {}
 
-    public LocalDate getCreationDate() {
-        return creationDate;
+
+    public LocalDateTime getCreationMoment() {
+        return creationMoment;
     }
 
-    public void setCreationDate(LocalDate creationDate) {
-        this.creationDate = creationDate;
+    public void setCreationMoment(LocalDateTime creationMoment) {
+        this.creationMoment = creationMoment;
     }
 
     public String getStoryText() {
@@ -52,5 +57,16 @@ public class StoryEntity extends BaseEntity {
         this.creator = creator;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        StoryEntity that = (StoryEntity) o;
+        return getCreationMoment().equals(that.getCreationMoment()) && getCamp().equals(that.getCamp()) && getCreator().equals(that.getCreator());
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(getCreationMoment(), getCamp(), getCreator());
+    }
 }
