@@ -29,7 +29,7 @@ public class DatabaseInit implements CommandLineRunner {
     public void run(String... args) throws Exception {
         userService.initProfiles();
         commentService.initCommentMoods();
-//        equipmentService.initEquipmentTypes();
+        equipmentService.initEquipmentTypes();
 //        campService.initCampLevels();
     }
 }
