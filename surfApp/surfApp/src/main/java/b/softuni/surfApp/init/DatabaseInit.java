@@ -30,6 +30,6 @@ public class DatabaseInit implements CommandLineRunner {
         userService.initProfiles();
         commentService.initCommentMoods();
         equipmentService.initEquipmentTypes();
-//        campService.initCampLevels();
+        campService.initCampLevels();
     }
 }

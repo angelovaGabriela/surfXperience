@@ -1,6 +1,6 @@
 package b.softuni.surfApp.service.impl;
 
-import b.softuni.surfApp.model.entity.CommentMood;
+
 import b.softuni.surfApp.model.entity.EquipmentType;
 import b.softuni.surfApp.model.enums.EquipmentTypeEnum;
 import b.softuni.surfApp.repository.EquipmentTypeRepository;
