@@ -13,15 +13,13 @@ public class CommentEntity extends BaseEntity {
     @Column(name = "creation_moment", nullable = false)
     private LocalDateTime creationMoment;
 
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private MoodEnum mood;
+    @Column(name = "comment_text", nullable = false,  columnDefinition = "TEXT")
+    private String commentText;
     @ManyToOne(optional = false)
     private UserEntity creator;
 
-    @Column(name = "comment_text", nullable = false,  columnDefinition = "TEXT")
-    private String commentText;
-
+    @ManyToOne(optional = false)
+    private CommentMood mood;
     public CommentEntity() {}
 
     public LocalDateTime getCreationMoment() {
@@ -32,13 +30,6 @@ public class CommentEntity extends BaseEntity {
         this.creationMoment = creationMoment;
     }
 
-    public MoodEnum getMood() {
-        return mood;
-    }
-
-    public void setMood(MoodEnum mood) {
-        this.mood = mood;
-    }
 
     public UserEntity getCreator() {
         return creator;
@@ -56,6 +47,14 @@ public class CommentEntity extends BaseEntity {
         this.commentText = commentText;
     }
 
+    public CommentMood getMood() {
+        return mood;
+    }
+
+    public void setMood(CommentMood mood) {
+        this.mood = mood;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -68,4 +67,5 @@ public class CommentEntity extends BaseEntity {
     public int hashCode() {
         return Objects.hash(getCreationMoment(), getCreator());
     }
+
 }

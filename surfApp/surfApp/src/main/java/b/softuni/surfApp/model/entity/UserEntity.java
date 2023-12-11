@@ -38,16 +38,14 @@ public class UserEntity extends BaseEntity {
 
     @Column(name = "can_participate")
     private Boolean canParticipate;
-
-    @Column(name = "user_profile", nullable = false)
-    @Enumerated(EnumType.STRING)
-    private UserProfileEnum userProfile;
-
     @OneToOne
     private PictureEntity profilePicture;
 
     @OneToMany
     private Set<StoryEntity> stories;
+
+    @ManyToOne(optional = false)
+    private UserProfileType profile;
 
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<UserRoleEntity> userRoles;
@@ -161,14 +159,6 @@ public class UserEntity extends BaseEntity {
         this.canParticipate = canParticipate;
     }
 
-    public UserProfileEnum getUserProfile() {
-        return userProfile;
-    }
-
-    public void setUserProfile(UserProfileEnum userProfile) {
-        this.userProfile = userProfile;
-    }
-
     public PictureEntity getProfilePicture() {
         return profilePicture;
     }
@@ -247,6 +237,14 @@ public class UserEntity extends BaseEntity {
 
     public void setMyCamps(Set<CampEntity> myCamps) {
         this.myCamps = myCamps;
+    }
+
+    public UserProfileType getProfile() {
+        return profile;
+    }
+
+    public void setProfile(UserProfileType profile) {
+        this.profile = profile;
     }
 
     @Override

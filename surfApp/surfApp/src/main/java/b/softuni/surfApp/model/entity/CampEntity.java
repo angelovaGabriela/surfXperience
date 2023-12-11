@@ -27,10 +27,8 @@ public class CampEntity extends BaseEntity {
     @Column
     private Integer capacity;
 
-    @Column(name = "difficulty_level", nullable = false)
-    @Enumerated(EnumType.STRING)
-    private DifficultyLevelEnum difficultyLevel;
-
+    @ManyToOne(optional = false)
+    private CampLevel level;
     @Column(nullable = false, columnDefinition = "TEXT")
     private String description;
     @OneToMany
@@ -102,14 +100,6 @@ public class CampEntity extends BaseEntity {
 
     public void setCapacity(Integer capacity) {
         this.capacity = capacity;
-    }
-
-    public DifficultyLevelEnum getDifficultyLevel() {
-        return difficultyLevel;
-    }
-
-    public void setDifficultyLevel(DifficultyLevelEnum difficultyLevel) {
-        this.difficultyLevel = difficultyLevel;
     }
 
     public String getDescription() {
@@ -200,16 +190,25 @@ public class CampEntity extends BaseEntity {
         this.stories = stories;
     }
 
+    public CampLevel getLevel() {
+        return level;
+    }
+
+    public void setLevel(CampLevel level) {
+        this.level = level;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CampEntity that = (CampEntity) o;
-        return getName().equals(that.getName()) && getDifficultyLevel() == that.getDifficultyLevel() && getCreator().equals(that.getCreator());
+        return getName().equals(that.getName()) && getStartDate().equals(that.getStartDate()) && getEndDate().equals(that.getEndDate()) && getCreator().equals(that.getCreator());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getName(), getDifficultyLevel(), getCreator());
+        return Objects.hash(getName(), getStartDate(), getEndDate(), getCreator());
     }
+
 }

@@ -8,11 +8,8 @@ import java.util.Objects;
 @Entity
 @Table(name = "equipments")
 public class EquipmentEntity extends BaseEntity {
-
-    @Column(name = "equipment_type", nullable = false, unique = true)
-    @Enumerated(EnumType.STRING)
-    private EquipmentTypeEnum equipmentType;
-
+    @ManyToOne(optional = false)
+    private EquipmentType type;
     @OneToOne
     private PictureEntity picture;
 
@@ -26,14 +23,6 @@ public class EquipmentEntity extends BaseEntity {
     private UserEntity owner;
 
     public EquipmentEntity() {}
-
-    public EquipmentTypeEnum getEquipmentType() {
-        return equipmentType;
-    }
-
-    public void setEquipmentType(EquipmentTypeEnum equipmentType) {
-        this.equipmentType = equipmentType;
-    }
 
     public PictureEntity getPicture() {
         return picture;
@@ -67,16 +56,25 @@ public class EquipmentEntity extends BaseEntity {
         this.owner = owner;
     }
 
+
+    public EquipmentType getType() {
+        return type;
+    }
+
+    public void setType(EquipmentType type) {
+        this.type = type;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         EquipmentEntity that = (EquipmentEntity) o;
-        return getEquipmentType() == that.getEquipmentType() && getHaveIt().equals(that.getHaveIt());
+        return getType().equals(that.getType());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getEquipmentType(), getHaveIt());
+        return Objects.hash(getType());
     }
 }
