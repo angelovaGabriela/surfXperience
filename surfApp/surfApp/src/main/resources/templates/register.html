@@ -22,13 +22,23 @@
   <form class="main-form mx-auto col-md-8 d-flex flex-column justify-content-center">
     <div class="row">
       <div class="form-group col-md-6 mb-3">
+        <label for="username" class="text-white font-weight-bold">Username</label>
+        <input id="username"
+               type="text"
+               class="form-control"
+               placeholder="Username"/>
+        <p class="invalid-feedback errors alert alert-danger">
+          Username should be between 5 and 20 symbols.
+        </p>
+      </div>
+      <div class="form-group col-md-6 mb-3">
         <label for="firstName" class="text-white font-weight-bold">First Name</label>
         <input id="firstName"
                 type="text"
                 class="form-control"
                 placeholder="First name"/>
         <p class="invalid-feedback errors alert alert-danger">
-          First name is required and should be between 2 and 20 symbols.
+          First name is required and should be between 5 and 20 symbols.
         </p>
       </div>
       <div class="form-group col-md-6 mb-3">
@@ -38,7 +48,40 @@
                class="form-control"
                placeholder="Last name"/>
         <p class="invalid-feedback errors alert alert-danger">
-          Last name is required and should be between 2 and 20 symbols.
+          Last name is required and should be between 5 and 20 symbols.
+        </p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-md-6 mb-3">
+        <label for="age" class="text-white font-weight-bold">Age</label>
+        <input id="age"
+               type="number"
+               class="form-control"
+               placeholder="Age"/>
+        <p class="invalid-feedback errors alert alert-danger">
+          Age is required! You must be older than 10 years old!
+        </p>
+      </div>
+      <div class="form-group col-md-6 mb-3">
+        <label for="weightKg" class="text-white font-weight-bold">Weight</label>
+        <input id="weightKg"
+               type="number"
+               class="form-control"
+               placeholder="Weight in kilograms"/>
+        <p class="invalid-feedback errors alert alert-danger">
+          Weight is required!
+        </p>
+      </div>
+      <div class="form-group col-md-6 mb-3">
+        <label for="heightCm" class="text-white font-weight-bold">Height</label>
+        <input id="heightCm"
+               type="number"
+               class="form-control"
+               placeholder="Height in centimeters"/>
+        <p class="invalid-feedback errors alert alert-danger">
+          Height is required!
         </p>
       </div>
     </div>
@@ -52,6 +95,7 @@
           <div></div>
         </div>
       </div>
+
       <div class="form-group col-md-6 mb-3">
         <label for="password" class="text-white font-weight-bold">Password</label>
         <input id="password"
@@ -59,14 +103,11 @@
                class="form-control"
                placeholder="Password"/>
         <p class="invalid-feedback errors alert alert-danger">
-          Password is required and should be at least 5 symbols.
+          Password is required and should be between 5 and 20 symbols.
         </p>
       </div>
-    </div>
 
-    <div class="form-group">
-
-      <div class="form-group">
+      <div class="form-group col-md-6 mb-3">
         <label for="confirmPassword" class="text-white font-weight-bold">Confirm password</label>
         <input id="confirmPassword"
                type="password"
@@ -76,11 +117,7 @@
           Passwords should match.
         </p>
       </div>
-
-
     </div>
-
-
     <div class="row">
       <div class="col col-md-4">
         <div class="button-holder d-flex">

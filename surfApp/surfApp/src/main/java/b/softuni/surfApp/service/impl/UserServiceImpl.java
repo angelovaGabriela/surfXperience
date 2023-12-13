@@ -1,10 +1,19 @@
 package b.softuni.surfApp.service.impl;
 
 import b.softuni.surfApp.model.binding.UserRegisterBindingModel;
+import b.softuni.surfApp.model.entity.UserEntity;
 import b.softuni.surfApp.model.entity.UserProfileType;
 import b.softuni.surfApp.model.enums.UserProfileEnum;
 import b.softuni.surfApp.repository.UserProfileRepository;
+import b.softuni.surfApp.repository.UserRepository;
 import b.softuni.surfApp.service.UserService;
+import org.modelmapper.ModelMapper;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -13,9 +22,22 @@ import java.util.Arrays;
 public class UserServiceImpl implements UserService {
 
     private final UserProfileRepository userProfileRepository;
+    private final UserRepository userRepository;
+    private final ModelMapper modelMapper;
 
-    public UserServiceImpl(UserProfileRepository userProfileRepository) {
+    private final PasswordEncoder passwordEncoder;
+
+    private final UserDetailsService userDetailsService;
+
+
+    public UserServiceImpl(UserProfileRepository userProfileRepository,
+                           UserRepository userRepository, ModelMapper modelMapper,
+                           PasswordEncoder passwordEncoder, UserDetailsService userDetailsService) {
         this.userProfileRepository = userProfileRepository;
+        this.userRepository = userRepository;
+        this.modelMapper = modelMapper;
+        this.passwordEncoder = passwordEncoder;
+        this.userDetailsService = userDetailsService;
     }
 
     @Override
@@ -33,6 +55,30 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void registerAndLogin(UserRegisterBindingModel userModel) {
-        //TODO: implement
+        UserEntity user = modelMapper.map(userModel, UserEntity.class);
+        user.setPassword(passwordEncoder.encode(userModel.getPassword()));
+
+
+        this.userRepository.save(user);
+        login(user);
+
+    }
+
+    private void login(UserEntity userEntity){
+
+        UserDetails userDetails =
+                userDetailsService.loadUserByUsername(userEntity.getEmail());
+
+        Authentication authentication =
+                new UsernamePasswordAuthenticationToken(
+                        userDetails,
+                        userDetails.getPassword(),
+                        userDetails.getAuthorities()
+                );
+
+        SecurityContextHolder
+                .getContext()
+                .setAuthentication(authentication);
+
     }
 }

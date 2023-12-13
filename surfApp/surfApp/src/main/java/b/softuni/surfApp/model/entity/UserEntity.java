@@ -1,6 +1,6 @@
 package b.softuni.surfApp.model.entity;
 
-import b.softuni.surfApp.model.enums.UserProfileEnum;
+
 
 import javax.persistence.*;
 import java.util.Objects;
