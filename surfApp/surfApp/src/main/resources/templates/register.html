@@ -19,12 +19,20 @@
 <div th:replace="fragments/navbar">Navbar</div>
 <div class="container">
   <h2 class="text-center text-white">Register User</h2>
-  <form class="main-form mx-auto col-md-8 d-flex flex-column justify-content-center">
+  <form  th:action="@{/register}"
+         th:method="POST"
+         th:object="${userModel}"
+          class="main-form mx-auto col-md-8 d-flex flex-column justify-content-center">
+
     <div class="row">
       <div class="form-group col-md-6 mb-3">
         <label for="username" class="text-white font-weight-bold">Username</label>
-        <input id="username"
+        <input  id="username"
+                th:field="*{username}"
+                th:errorclass="is-invalid"
                type="text"
+               min="5"
+               max="20"
                class="form-control"
                placeholder="Username"/>
         <p class="invalid-feedback errors alert alert-danger">
@@ -32,8 +40,33 @@
         </p>
       </div>
       <div class="form-group col-md-6 mb-3">
+        <label class="text-center text-white font-weight-bold" for="profile">Profile</label>
+        <select
+                id="profile"
+                name="profile"
+                th:field="*{profile}"
+                th:errorclass="is-invalid"
+                class="form-control">
+          <option value="0">Select profile type</option>
+          <option th:each="p : ${T(b.softuni.surfApp.model.enums.UserProfileEnum).values()}"
+                  th:value="${p}"
+                  th:text="${p.getLabel()}"
+                  th:selected="${p} == *{profile}">
+            Profile type
+          </option>
+        </select>
+        <p class="invalid-feedback errors alert alert-danger">
+          Profile type is required.
+        </p>
+      </div>
+    </div>
+
+      <div class="row">
+      <div class="form-group col-md-6 mb-3">
         <label for="firstName" class="text-white font-weight-bold">First Name</label>
         <input id="firstName"
+               th:field="*{firstName}"
+               th:errorclass="is-invalid"
                 type="text"
                 class="form-control"
                 placeholder="First name"/>
@@ -44,6 +77,8 @@
       <div class="form-group col-md-6 mb-3">
         <label for="lastName" class="text-white font-weight-bold">Last Name</label>
         <input id="lastName"
+               th:field="*{lastName}"
+               th:errorclass="is-invalid"
                type="text"
                class="form-control"
                placeholder="Last name"/>
@@ -57,6 +92,8 @@
       <div class="form-group col-md-6 mb-3">
         <label for="age" class="text-white font-weight-bold">Age</label>
         <input id="age"
+               th:field="*{age}"
+               th:errorclass="is-invalid"
                type="number"
                class="form-control"
                placeholder="Age"/>
@@ -65,8 +102,25 @@
         </p>
       </div>
       <div class="form-group col-md-6 mb-3">
+        <label for="email" class="text-white font-weight-bold">E-mail</label>
+        <input id="email"
+               th:field="*{email}"
+               type="email"
+               th:errorclass="is-invalid"
+               class="form-control"
+               placeholder="Email"/>
+        <div class="invalid-feedback errors alert alert-danger">
+          <div th:each="err : ${#fields.errors('email')}"
+               th:text="${err}"></div>
+        </div>
+      </div>
+    </div>
+      <div class="row">
+      <div class="form-group col-md-6 mb-3">
         <label for="weightKg" class="text-white font-weight-bold">Weight</label>
         <input id="weightKg"
+               th:field="*{weightKg}"
+               th:errorclass="is-invalid"
                type="number"
                class="form-control"
                placeholder="Weight in kilograms"/>
@@ -77,6 +131,8 @@
       <div class="form-group col-md-6 mb-3">
         <label for="heightCm" class="text-white font-weight-bold">Height</label>
         <input id="heightCm"
+               th:field="*{heightCm}"
+               th:errorclass="is-invalid"
                type="number"
                class="form-control"
                placeholder="Height in centimeters"/>
@@ -86,20 +142,28 @@
       </div>
     </div>
     <div class="row">
-      <div class="form-group col-md-6 mb-3">
-        <label for="email" class="text-white font-weight-bold">E-mail</label>
-        <input id="email"
-               class="form-control"
-               placeholder="Email"/>
-        <div class="invalid-feedback errors alert alert-danger">
-          <div></div>
-        </div>
-      </div>
-
+    <div class="form-group col-md-6 mb-3">
+      <label for="about" class="text-white font-weight-bold">About you</label>
+      <input id="about"
+             th:field="*{about}"
+             th:errorclass="is-invalid"
+             type="text"
+             class="form-control"
+             placeholder="About you"/>
+      <p class="invalid-feedback errors alert alert-danger">
+        Please tell us about yourself!
+      </p>
+    </div>
+    </div>
+    <div class="row">
       <div class="form-group col-md-6 mb-3">
         <label for="password" class="text-white font-weight-bold">Password</label>
         <input id="password"
+               th:field="*{password}"
+               th:errorclass="is-invalid"
                type="password"
+               min="5"
+               max="20"
                class="form-control"
                placeholder="Password"/>
         <p class="invalid-feedback errors alert alert-danger">
@@ -110,6 +174,8 @@
       <div class="form-group col-md-6 mb-3">
         <label for="confirmPassword" class="text-white font-weight-bold">Confirm password</label>
         <input id="confirmPassword"
+               th:field="*{confirmPassword}"
+               th:errorclass="is-invalid"
                type="password"
                class="form-control"
                placeholder="Confirm password"/>

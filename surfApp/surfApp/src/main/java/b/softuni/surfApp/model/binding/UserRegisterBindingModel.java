@@ -1,7 +1,7 @@
 package b.softuni.surfApp.model.binding;
 
 
-import b.softuni.surfApp.model.entity.UserProfileType;
+import b.softuni.surfApp.model.enums.UserProfileEnum;
 import b.softuni.surfApp.validations.FieldMatch;
 import b.softuni.surfApp.validations.UniqueUserEmail;
 import b.softuni.surfApp.validations.UniqueUsername;
@@ -35,16 +35,16 @@ public class UserRegisterBindingModel {
     @UniqueUserEmail(message = "E-mail must be unique!")
     private String email;
 
-    @NotBlank(message = "Age must be provided!")
+    @NotNull(message = "Age must be provided!")
     @Positive
     @Min(10)
     private Integer age;
 
-    @NotBlank(message = "Weight must be provided!")
+    @NotNull(message = "Weight must be provided!")
     @Positive
     private Double weightKg;
 
-    @NotBlank(message = "Height must be provided!")
+    @NotNull(message = "Height must be provided!")
     @Positive
     private Double heightCm;
 
@@ -52,7 +52,7 @@ public class UserRegisterBindingModel {
     private String about;
 
     @NotNull(message = "The field is mandatory!")
-    private UserProfileType profile;
+    private UserProfileEnum profile;
 
     @NotBlank(message = "The field is mandatory!")
     @Size(min = 5, max = 20)
@@ -120,11 +120,11 @@ public class UserRegisterBindingModel {
         this.about = about;
     }
 
-    public UserProfileType getProfile() {
+    public UserProfileEnum getProfile() {
         return profile;
     }
 
-    public void setProfile(UserProfileType profile) {
+    public void setProfile(UserProfileEnum profile) {
         this.profile = profile;
     }
 
