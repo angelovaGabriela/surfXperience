@@ -50,16 +50,17 @@ public class SecurityConfig {
                 // where to go in case that the login is successful
                         defaultSuccessUrl("/").
                 // where to go in case that the login failed
-                        failureForwardUrl("/login-error");
+                        failureForwardUrl("/login-error").
+                        and().
                 // configure logout
-                    //    logout().
+                       logout().
                 // which is the logout url
-                      //  logoutUrl("/logout").
+                        logoutUrl("/logout").
                 // on logout go to home page
-                   //     logoutSuccessUrl("/").
+                        logoutSuccessUrl("/").
                 // invalidate the session and delete the cookies
-                    //    invalidateHttpSession(true).
-           //     deleteCookies("JSESSIONID");
+                       invalidateHttpSession(true).
+                       deleteCookies("JSESSIONID");
 
 
         return http.build();

@@ -27,7 +27,7 @@ public class SurfAppUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username)
             throws UsernameNotFoundException {
         return userRepository.
-                findByEmail(username).
+                findByUsername(username).
                 map(this::map).
                 orElseThrow(() -> new UsernameNotFoundException("User " + username + " is not found!"));
     }

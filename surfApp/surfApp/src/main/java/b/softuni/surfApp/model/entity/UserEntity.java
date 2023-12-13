@@ -3,8 +3,7 @@ package b.softuni.surfApp.model.entity;
 
 
 import javax.persistence.*;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 
 @Entity
@@ -47,8 +46,9 @@ public class UserEntity extends BaseEntity {
     @ManyToOne(optional = false)
     private UserProfileType profile;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set<UserRoleEntity> userRoles;
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<UserRoleEntity> userRoles  = new ArrayList<>();
+
 
     @OneToMany
     private Set<EquipmentEntity> equipmentProvided;
@@ -175,11 +175,11 @@ public class UserEntity extends BaseEntity {
         this.stories = stories;
     }
 
-    public Set<UserRoleEntity> getUserRoles() {
+    public List<UserRoleEntity> getUserRoles() {
         return userRoles;
     }
 
-    public void setUserRoles(Set<UserRoleEntity> userRoles) {
+    public void setUserRoles(List<UserRoleEntity> userRoles) {
         this.userRoles = userRoles;
     }
 

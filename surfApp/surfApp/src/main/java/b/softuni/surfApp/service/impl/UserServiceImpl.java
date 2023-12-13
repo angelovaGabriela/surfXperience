@@ -3,7 +3,9 @@ package b.softuni.surfApp.service.impl;
 import b.softuni.surfApp.model.binding.UserRegisterBindingModel;
 import b.softuni.surfApp.model.entity.UserEntity;
 import b.softuni.surfApp.model.entity.UserProfileType;
+import b.softuni.surfApp.model.entity.UserRoleEntity;
 import b.softuni.surfApp.model.enums.UserProfileEnum;
+import b.softuni.surfApp.model.enums.UserRoleEnum;
 import b.softuni.surfApp.repository.UserProfileRepository;
 import b.softuni.surfApp.repository.UserRepository;
 import b.softuni.surfApp.service.UserService;
@@ -58,6 +60,18 @@ public class UserServiceImpl implements UserService {
         UserEntity user = modelMapper.map(userModel, UserEntity.class);
         user.setPassword(passwordEncoder.encode(userModel.getPassword()));
 
+        UserProfileType byProfileType = this.userProfileRepository.findByProfileType(userModel.getProfile());
+        user.setProfile(byProfileType);
+
+        UserRoleEntity role = new UserRoleEntity();
+
+        if (userRepository.count() == 0) {
+            role.setUserRoleEnum(UserRoleEnum.ADMIN);
+            user.getUserRoles().add(role);
+        } else {
+            role.setUserRoleEnum(UserRoleEnum.USER);
+            user.getUserRoles().add(role);
+        }
 
         this.userRepository.save(user);
         login(user);
@@ -67,7 +81,7 @@ public class UserServiceImpl implements UserService {
     private void login(UserEntity userEntity){
 
         UserDetails userDetails =
-                userDetailsService.loadUserByUsername(userEntity.getEmail());
+                userDetailsService.loadUserByUsername(userEntity.getUsername());
 
         Authentication authentication =
                 new UsernamePasswordAuthenticationToken(
