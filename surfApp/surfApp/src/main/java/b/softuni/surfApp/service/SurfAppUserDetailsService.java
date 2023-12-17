@@ -35,7 +35,7 @@ public class SurfAppUserDetailsService implements UserDetailsService {
     private UserDetails map(UserEntity userEntity) {
         return new SurfAppUserDetails(
                 userEntity.getPassword(),
-                userEntity.getEmail(),
+                userEntity.getUsername(),
                 userEntity.getFirstName(),
                 userEntity.getLastName(),
                 userEntity.

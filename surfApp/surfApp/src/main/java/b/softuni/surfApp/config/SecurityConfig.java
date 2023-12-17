@@ -21,11 +21,6 @@ public class SecurityConfig {
     // 3. UserDetailsService
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new Pbkdf2PasswordEncoder();
-    }
-
-    @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.
                 // define which requests are allowed and which not
@@ -65,8 +60,14 @@ public class SecurityConfig {
 
         return http.build();
     }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new Pbkdf2PasswordEncoder();
+    }
     @Bean
     public UserDetailsService userDetailsService(UserRepository userRepository) {
         return new SurfAppUserDetailsService(userRepository);
     }
+
 }
