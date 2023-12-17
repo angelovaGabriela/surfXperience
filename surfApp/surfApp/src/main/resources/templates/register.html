@@ -35,8 +35,8 @@
                max="20"
                class="form-control"
                placeholder="Username"/>
-        <p class="invalid-feedback errors alert alert-danger">
-          Username should be between 5 and 20 symbols.
+        <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="invalid-feedback errors alert alert-danger">
+          Error message!
         </p>
       </div>
       <div class="form-group col-md-6 mb-3">
@@ -56,7 +56,7 @@
           </option>
         </select>
         <p class="invalid-feedback errors alert alert-danger">
-          Profile type is required.
+          Please, select a profile type!
         </p>
       </div>
     </div>
@@ -70,8 +70,8 @@
                 type="text"
                 class="form-control"
                 placeholder="First name"/>
-        <p class="invalid-feedback errors alert alert-danger">
-          First name is required and should be between 5 and 20 symbols.
+        <p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="invalid-feedback errors alert alert-danger">
+          Error message!
         </p>
       </div>
       <div class="form-group col-md-6 mb-3">
@@ -82,8 +82,7 @@
                type="text"
                class="form-control"
                placeholder="Last name"/>
-        <p class="invalid-feedback errors alert alert-danger">
-          Last name is required and should be between 5 and 20 symbols.
+        <p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="invalid-feedback errors alert alert-danger">
         </p>
       </div>
     </div>
@@ -97,8 +96,8 @@
                type="number"
                class="form-control"
                placeholder="Age"/>
-        <p class="invalid-feedback errors alert alert-danger">
-          Age is required! You must be older than 10 years old!
+        <p th:if="${#fields.hasErrors('age')}" th:errors="*{age}" class="invalid-feedback errors alert alert-danger">
+          Error message!
         </p>
       </div>
       <div class="form-group col-md-6 mb-3">
@@ -111,7 +110,7 @@
                placeholder="Email"/>
         <div class="invalid-feedback errors alert alert-danger">
           <div th:each="err : ${#fields.errors('email')}"
-               th:text="${err}"></div>
+               th:text="${err}"> Error message!</div>
         </div>
       </div>
     </div>
@@ -124,8 +123,8 @@
                type="number"
                class="form-control"
                placeholder="Weight in kilograms"/>
-        <p class="invalid-feedback errors alert alert-danger">
-          Weight is required!
+        <p th:if="${#fields.hasErrors('weightKg')}" th:errors="*{weightKg}" class="invalid-feedback errors alert alert-danger">
+          Error message!
         </p>
       </div>
       <div class="form-group col-md-6 mb-3">
@@ -136,8 +135,8 @@
                type="number"
                class="form-control"
                placeholder="Height in centimeters"/>
-        <p class="invalid-feedback errors alert alert-danger">
-          Height is required!
+        <p th:if="${#fields.hasErrors('heightCm')}" th:errors="*{heightCm}" class="invalid-feedback errors alert alert-danger">
+          Error message!
         </p>
       </div>
     </div>
@@ -150,8 +149,8 @@
              type="text"
              class="form-control"
              placeholder="About you"/>
-      <p class="invalid-feedback errors alert alert-danger">
-        Please tell us about yourself!
+      <p th:if="${#fields.hasErrors('about')}" th:errors="*{about}" class="invalid-feedback errors alert alert-danger">
+        Error message!
       </p>
     </div>
     </div>
@@ -166,8 +165,8 @@
                max="20"
                class="form-control"
                placeholder="Password"/>
-        <p class="invalid-feedback errors alert alert-danger">
-          Password is required and should be between 5 and 20 symbols.
+        <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="invalid-feedback errors alert alert-danger">
+          Error message!
         </p>
       </div>
 
@@ -179,8 +178,8 @@
                type="password"
                class="form-control"
                placeholder="Confirm password"/>
-        <p class="invalid-feedback errors alert alert-danger">
-          Passwords should match.
+        <p th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}" class="invalid-feedback errors alert alert-danger">
+          Error message!
         </p>
       </div>
     </div>

@@ -7,6 +7,8 @@ import b.softuni.surfApp.validations.UniqueUserEmail;
 import b.softuni.surfApp.validations.UniqueUsername;
 
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.validation.constraints.*;
 
 
@@ -16,50 +18,49 @@ import javax.validation.constraints.*;
         message = "Passwords do not match!"
 )
 public class UserRegisterBindingModel {
-
-    @NotBlank(message = "Username must be provided!")
-    @Size(min = 5, max = 20)
-    @UniqueUsername(message = "Username must be unique!")
+    @NotBlank(message = "Username is required!")
+    @Size(min = 5, max = 20, message = "Username should be between 5 and 20 characters.")
+    @UniqueUsername(message = "The username is already taken!")
     private String username;
 
-    @NotBlank(message = "First name must be provided!")
-    @Size(min = 5, max = 20)
+    @NotBlank(message = "First name is required!")
+    @Size(min = 5, max = 20, message = "First name should be between 5 and 20 characters.")
     private String firstName;
 
-    @NotBlank(message = "Last name must be provided!")
-    @Size(min = 5, max = 20)
+    @NotBlank(message = "Last name is required!")
+    @Size(min = 5, max = 20, message = "Last name should be between 5 and 20 characters.")
     private String lastName;
 
-    @NotBlank(message = "E-mail must be provided!")
-    @Email(message = "E-mail must be valid: example@example.com!")
-    @UniqueUserEmail(message = "E-mail must be unique!")
+    @NotBlank(message = "E-mail is required!")
+    @Email(message = "Must contain '@'!")
+    @UniqueUserEmail(message = "An account with this e-mail already exists!")
     private String email;
 
-    @NotNull(message = "Age must be provided!")
-    @Positive
-    @Min(10)
+
+    @NotNull(message = "Age is required!")
+    @Positive(message = "Please, enter a positive number.")
+    @Min(value = 10, message = "You must be at least 10 years old.")
     private Integer age;
 
-    @NotNull(message = "Weight must be provided!")
-    @Positive
+    @NotNull(message = "Weight is required!")
+    @Positive(message = "Please, enter a positive number.")
     private Double weightKg;
 
-    @NotNull(message = "Height must be provided!")
-    @Positive
+    @NotNull(message = "Height is required!")
+    @Positive(message = "Please, enter a positive number.")
     private Double heightCm;
 
-    @NotBlank(message = "Tell us about yourself!")
+    @NotBlank(message = "Please, tell us more about yourself!")
     private String about;
 
-    @NotNull(message = "The field is mandatory!")
+    @NotNull
     private UserProfileEnum profile;
 
-    @NotBlank(message = "The field is mandatory!")
-    @Size(min = 5, max = 20)
+    @NotBlank(message = "Password is required!")
+    @Size(min = 5, max = 20, message = "Password should be between 5 and 20 characters.")
     private String password;
 
-    @NotBlank(message = "The field is mandatory!")
-    @Size(min = 5, max = 20)
+    @NotBlank(message = "Password confirmation is required!")
     private String confirmPassword;
 
     public UserRegisterBindingModel() {}

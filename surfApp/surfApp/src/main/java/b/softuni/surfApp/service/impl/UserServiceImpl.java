@@ -64,7 +64,8 @@ public class UserServiceImpl implements UserService {
         user.setProfile(byProfileType);
 
         UserRoleEntity role = new UserRoleEntity();
-
+//TODO: assign user role properly (now I am adding new Admin User User)
+        //https://www.baeldung.com/role-and-privilege-for-spring-security-registration
         if (userRepository.count() == 0) {
             role.setUserRoleEnum(UserRoleEnum.ADMIN);
             user.getUserRoles().add(role);
