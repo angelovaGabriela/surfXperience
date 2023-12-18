@@ -12,6 +12,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.util.stream.Collectors;
 
+//TODO: https://www.baeldung.com/role-and-privilege-for-spring-security-registration#custom-userdetailsservice
+
 public class SurfAppUserDetailsService implements UserDetailsService {
 
     private final UserRepository userRepository;
@@ -39,7 +41,7 @@ public class SurfAppUserDetailsService implements UserDetailsService {
                 userEntity.getFirstName(),
                 userEntity.getLastName(),
                 userEntity.
-                        getUserRoles().
+                        getRoles().
                         stream().
                         map(this::map).
                         collect(Collectors.toList()));
@@ -47,6 +49,6 @@ public class SurfAppUserDetailsService implements UserDetailsService {
 
     private GrantedAuthority map(UserRoleEntity userRole) {
         return new SimpleGrantedAuthority("ROLE_" +
-                userRole.getUserRoleEnum().name());
+                userRole.getName());
     }
 }

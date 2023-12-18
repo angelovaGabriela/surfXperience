@@ -1,24 +1,54 @@
 package b.softuni.surfApp.model.entity;
 
-import b.softuni.surfApp.model.enums.UserRoleEnum;
-
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name = "user_roles")
+@Table(name = "roles")
 public class UserRoleEntity extends BaseEntity {
 
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private UserRoleEnum userRoleEnum;
+    private String name;
+
+    @ManyToMany(mappedBy = "roles")
+    private List<UserEntity> users;
+    @ManyToMany
+    @JoinTable(
+            name = "roles_privileges",
+            joinColumns = @JoinColumn(
+                    name = "role_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "privilege_id", referencedColumnName = "id"))
+    private List<PrivilegeEntity> privilegeEntities;
+
+
 
     public UserRoleEntity() {}
 
-    public UserRoleEnum getUserRoleEnum() {
-        return userRoleEnum;
+    public UserRoleEntity(String name) {
+        this.name = name;
     }
 
-    public void setUserRoleEnum(UserRoleEnum userRoleEnum) {
-        this.userRoleEnum = userRoleEnum;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<UserEntity> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<UserEntity> users) {
+        this.users = users;
+    }
+
+    public List<PrivilegeEntity> getPrivileges() {
+        return privilegeEntities;
+    }
+
+    public void setPrivileges(List<PrivilegeEntity> privilegeEntities) {
+        this.privilegeEntities = privilegeEntities;
     }
 }

@@ -5,7 +5,6 @@ import b.softuni.surfApp.model.entity.UserEntity;
 import b.softuni.surfApp.model.entity.UserProfileType;
 import b.softuni.surfApp.model.entity.UserRoleEntity;
 import b.softuni.surfApp.model.enums.UserProfileEnum;
-import b.softuni.surfApp.model.enums.UserRoleEnum;
 import b.softuni.surfApp.repository.UserProfileRepository;
 import b.softuni.surfApp.repository.UserRepository;
 import b.softuni.surfApp.service.UserService;
@@ -66,13 +65,6 @@ public class UserServiceImpl implements UserService {
         UserRoleEntity role = new UserRoleEntity();
 //TODO: assign user role properly (now I am adding new Admin User User)
         //https://www.baeldung.com/role-and-privilege-for-spring-security-registration
-        if (userRepository.count() == 0) {
-            role.setUserRoleEnum(UserRoleEnum.ADMIN);
-            user.getUserRoles().add(role);
-        } else {
-            role.setUserRoleEnum(UserRoleEnum.USER);
-            user.getUserRoles().add(role);
-        }
 
         this.userRepository.save(user);
         login(user);

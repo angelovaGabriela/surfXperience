@@ -46,9 +46,16 @@ public class UserEntity extends BaseEntity {
     @ManyToOne(optional = false)
     private UserProfileType profile;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<UserRoleEntity> userRoles  = new ArrayList<>();
+    @ManyToMany
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(
+                    name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "role_id", referencedColumnName = "id"))
+    private List<UserRoleEntity> roles;
 
+    private boolean enabled;
 
     @OneToMany
     private Set<EquipmentEntity> equipmentProvided;
@@ -175,12 +182,12 @@ public class UserEntity extends BaseEntity {
         this.stories = stories;
     }
 
-    public List<UserRoleEntity> getUserRoles() {
-        return userRoles;
+    public List<UserRoleEntity> getRoles() {
+        return roles;
     }
 
-    public void setUserRoles(List<UserRoleEntity> userRoles) {
-        this.userRoles = userRoles;
+    public void setRoles(List<UserRoleEntity> roles) {
+        this.roles = roles;
     }
 
     public Set<EquipmentEntity> getEquipmentProvided() {
@@ -247,6 +254,14 @@ public class UserEntity extends BaseEntity {
         this.profile = profile;
     }
 
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -254,7 +269,6 @@ public class UserEntity extends BaseEntity {
         UserEntity that = (UserEntity) o;
         return getUsername().equals(that.getUsername()) && getEmail().equals(that.getEmail());
     }
-
     @Override
     public int hashCode() {
         return Objects.hash(getUsername(), getEmail());
