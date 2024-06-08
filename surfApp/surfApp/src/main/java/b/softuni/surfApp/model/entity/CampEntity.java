@@ -1,8 +1,7 @@
 package b.softuni.surfApp.model.entity;
 
-import b.softuni.surfApp.model.enums.DifficultyLevelEnum;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

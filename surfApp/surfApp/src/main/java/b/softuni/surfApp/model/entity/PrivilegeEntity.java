@@ -1,8 +1,9 @@
 package b.softuni.surfApp.model.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
+
 import java.util.List;
 
 @Entity

@@ -14,7 +14,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -26,18 +25,16 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
 
-    private final PasswordEncoder passwordEncoder;
 
     private final UserDetailsService userDetailsService;
 
 
     public UserServiceImpl(UserProfileRepository userProfileRepository,
                            UserRepository userRepository, ModelMapper modelMapper,
-                           PasswordEncoder passwordEncoder, UserDetailsService userDetailsService) {
+                           UserDetailsService userDetailsService) {
         this.userProfileRepository = userProfileRepository;
         this.userRepository = userRepository;
         this.modelMapper = modelMapper;
-        this.passwordEncoder = passwordEncoder;
         this.userDetailsService = userDetailsService;
     }
 
@@ -57,7 +54,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void registerAndLogin(UserRegisterBindingModel userModel) {
         UserEntity user = modelMapper.map(userModel, UserEntity.class);
-        user.setPassword(passwordEncoder.encode(userModel.getPassword()));
+        user.setPassword(userModel.getPassword());
 
         UserProfileType byProfileType = this.userProfileRepository.findByProfileType(userModel.getProfile());
         user.setProfile(byProfileType);

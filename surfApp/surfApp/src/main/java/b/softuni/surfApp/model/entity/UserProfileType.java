@@ -1,8 +1,7 @@
 package b.softuni.surfApp.model.entity;
 
 import b.softuni.surfApp.model.enums.UserProfileEnum;
-
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "user_profile_type")

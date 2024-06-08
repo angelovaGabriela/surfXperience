@@ -5,11 +5,7 @@ import b.softuni.surfApp.model.enums.UserProfileEnum;
 import b.softuni.surfApp.validations.FieldMatch;
 import b.softuni.surfApp.validations.UniqueUserEmail;
 import b.softuni.surfApp.validations.UniqueUsername;
-
-
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.validation.constraints.*;
+import jakarta.validation.constraints.*;
 
 
 @FieldMatch(

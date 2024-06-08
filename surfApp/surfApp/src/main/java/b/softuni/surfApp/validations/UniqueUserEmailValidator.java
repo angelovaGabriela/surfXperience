@@ -1,13 +1,11 @@
 package b.softuni.surfApp.validations;
 
 
-
 import b.softuni.surfApp.repository.UserRepository;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
-
-public class UniqueUserEmailValidator implements ConstraintValidator <UniqueUserEmail, String> {
+public class UniqueUserEmailValidator implements ConstraintValidator<UniqueUserEmail, String> {
 
     private UserRepository userRepository;
 

@@ -1,6 +1,7 @@
 package b.softuni.surfApp.model.entity;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+
 import java.util.List;
 
 @Entity

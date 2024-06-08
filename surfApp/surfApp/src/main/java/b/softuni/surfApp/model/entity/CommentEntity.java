@@ -1,8 +1,10 @@
 package b.softuni.surfApp.model.entity;
 
-import b.softuni.surfApp.model.enums.MoodEnum;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
 

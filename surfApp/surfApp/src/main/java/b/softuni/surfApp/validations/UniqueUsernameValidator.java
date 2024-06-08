@@ -1,9 +1,8 @@
 package b.softuni.surfApp.validations;
 
 import b.softuni.surfApp.repository.UserRepository;
-
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 public class UniqueUsernameValidator implements ConstraintValidator<UniqueUsername, String> {
 
