@@ -1,16 +1,13 @@
-package b.softuni.surfApp.service;
+package b.softuni.surfApp.service.impl;
 
 import b.softuni.surfApp.model.entity.UserEntity;
-import b.softuni.surfApp.model.entity.UserRoleEntity;
 import b.softuni.surfApp.repository.UserRepository;
-import b.softuni.surfApp.user.SurfAppUserDetails;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import java.util.stream.Collectors;
+import java.util.List;
 
 //TODO: https://www.baeldung.com/role-and-privilege-for-spring-security-registration#custom-userdetailsservice
 
@@ -24,31 +21,25 @@ public class SurfAppUserDetailsService implements UserDetailsService {
 
 
 
-
     @Override
     public UserDetails loadUserByUsername(String username)
             throws UsernameNotFoundException {
         return userRepository.
                 findByUsername(username).
-                map(this::map).
+                map(SurfAppUserDetailsService::map).
                 orElseThrow(() -> new UsernameNotFoundException("User " + username + " is not found!"));
     }
 
-    private UserDetails map(UserEntity userEntity) {
-        return new SurfAppUserDetails(
-                userEntity.getPassword(),
-                userEntity.getUsername(),
-                userEntity.getFirstName(),
-                userEntity.getLastName(),
-                userEntity.
-                        getRoles().
-                        stream().
-                        map(this::map).
-                        collect(Collectors.toList()));
+    private static UserDetails map(UserEntity userEntity) {
+        return User.withUsername(userEntity.getUsername())
+                .password(userEntity.getPassword())
+                .authorities(List.of())
+                .disabled(false) /*TODO*/
+                .build();
     }
 
-    private GrantedAuthority map(UserRoleEntity userRole) {
-        return new SimpleGrantedAuthority("ROLE_" +
-                userRole.getName());
-    }
+//    private GrantedAuthority map(UserRoleEntity userRole) {
+//        return new SimpleGrantedAuthority("ROLE_" +
+//                userRole.getName());
+//    }
 }

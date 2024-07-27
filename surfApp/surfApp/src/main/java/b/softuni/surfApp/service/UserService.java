@@ -6,7 +6,7 @@ public interface UserService {
 
     void initProfiles();
 
-    void registerAndLogin(UserRegisterBindingModel userModel);
+    void register(UserRegisterBindingModel userModel);
 
 
 }

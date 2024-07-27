@@ -1,9 +1,13 @@
 package b.softuni.surfApp.config;
 
+import b.softuni.surfApp.repository.UserRepository;
+import b.softuni.surfApp.service.impl.SurfAppUserDetailsService;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -32,7 +36,7 @@ public class SecurityConfig {
                                 // What is the name of the password parameter in the Login POST request?
                                 .passwordParameter("password")
                                 // What happens if the Login is successful ?
-                                .defaultSuccessUrl("/")
+                                .defaultSuccessUrl("/", true)
                                 //What happens if the Login fails ?
                                 .failureForwardUrl("/login-error")
                 )
@@ -49,4 +53,14 @@ public class SecurityConfig {
 
     }
 
+    @Bean
+    public SurfAppUserDetailsService userDetailsService(UserRepository userRepository) {
+        return new SurfAppUserDetailsService(userRepository);
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return Pbkdf2PasswordEncoder
+                .defaultsForSpringSecurity_v5_8();
+    }
 }
