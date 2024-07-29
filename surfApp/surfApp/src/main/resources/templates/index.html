@@ -18,6 +18,14 @@
 
 <div th:replace="~{fragments/navbar}">Navbar</div>
 
+<div class="container-fluid">
+    <h5 class="text-center text-white mt-5">Welcome to SurfXperience,
+        <th:block sec:authorized="isAuthenticated()" sec:authentication='name'>!</th:block>
+        <th:block sec:authorized="!isAuthenticated()">!</th:block>
+
+    </h5>
+
+</div>
 
 <div>
     <footer> </footer>
