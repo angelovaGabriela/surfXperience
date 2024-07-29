@@ -3,6 +3,7 @@ package b.softuni.surfApp.model.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -24,6 +25,16 @@ public class UserEntity extends BaseEntity {
     private String firstName;
     @Column(name = "last_name", nullable = false)
     private String lastName;
+
+    @ManyToMany(
+            fetch = FetchType.EAGER
+    )
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private List<UserRoleEntity> roles = new ArrayList<>();
 
     @Column(nullable = false)
     private Integer age;
@@ -48,14 +59,6 @@ public class UserEntity extends BaseEntity {
     @ManyToOne(optional = false)
     private UserProfileType profile;
 
-    @ManyToMany
-    @JoinTable(
-            name = "users_roles",
-            joinColumns = @JoinColumn(
-                    name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(
-                    name = "role_id", referencedColumnName = "id"))
-    private List<UserRoleEntity> roles;
 
     private boolean enabled;
 
@@ -128,6 +131,14 @@ public class UserEntity extends BaseEntity {
         this.lastName = lastName;
     }
 
+    public List<UserRoleEntity> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<UserRoleEntity> roles) {
+        this.roles = roles;
+    }
+
     public Integer getAge() {
         return age;
     }
@@ -184,13 +195,7 @@ public class UserEntity extends BaseEntity {
         this.stories = stories;
     }
 
-    public List<UserRoleEntity> getRoles() {
-        return roles;
-    }
 
-    public void setRoles(List<UserRoleEntity> roles) {
-        this.roles = roles;
-    }
 
     public Set<EquipmentEntity> getEquipmentProvided() {
         return equipmentProvided;
