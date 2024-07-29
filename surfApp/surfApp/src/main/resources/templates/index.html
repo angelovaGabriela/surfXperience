@@ -20,9 +20,7 @@
 
 <div class="container-fluid">
     <h5 class="text-center text-white mt-5">Welcome to SurfXperience,
-        <th:block sec:authorized="isAuthenticated()" sec:authentication='name'>!</th:block>
-        <th:block sec:authorized="!isAuthenticated()">!</th:block>
-
+        <th:block th:text="${welcomeMessage}"></th:block>!
     </h5>
 
 </div>

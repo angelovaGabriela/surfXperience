@@ -1,28 +1,39 @@
 package b.softuni.surfApp.user;
 
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.User;
 
 import java.util.Collection;
 
-public class SurfAppUserDetails implements UserDetails {
-    private final String password;
-    private final String username;
+public class SurfAppUserDetails extends User {
+
     private final String firstName;
     private final String lastName;
-    private final Collection<GrantedAuthority> authorities;
 
-    public SurfAppUserDetails(String password,
-                              String username,
+    public SurfAppUserDetails(String username,
+                              String password,
+                              Collection<? extends GrantedAuthority> authorities,
                               String firstName,
-                              String lastName,
-                              Collection<GrantedAuthority> authorities) {
-
-        this.password = password;
-        this.username = username;
+                              String lastName
+    ) {
+        super(username, password, authorities);
         this.firstName = firstName;
         this.lastName = lastName;
-        this.authorities = authorities;
+    }
+
+    public String getFullName() {
+        StringBuilder fullName = new StringBuilder();
+
+        if (firstName != null) {
+            fullName.append(firstName);
+        }
+        if (lastName != null) {
+            if (!lastName.isEmpty()) {
+                fullName.append(" ");
+            }
+            fullName.append(lastName);
+        }
+        return fullName.toString();
     }
 
     public String getFirstName() {
@@ -31,56 +42,6 @@ public class SurfAppUserDetails implements UserDetails {
 
     public String getLastName() {
         return lastName;
-    }
-
-    public String getFullName() {
-        StringBuilder fullName = new StringBuilder();
-        if (getFirstName() != null) {
-            fullName.append(getFirstName());
-        }
-        if (getLastName() != null) {
-            if (fullName.length() != 0) {
-                fullName.append(" ");
-            }
-            fullName.append(getLastName());
-        }
-
-        return fullName.toString();
-    }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
-    }
-
-    @Override
-    public String getPassword() {
-        return password;
-    }
-
-    @Override
-    public String getUsername() {
-        return username;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
     }
 }
 

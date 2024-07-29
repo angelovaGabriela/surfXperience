@@ -2,7 +2,7 @@ package b.softuni.surfApp.service.impl;
 
 import b.softuni.surfApp.model.entity.UserEntity;
 import b.softuni.surfApp.repository.UserRepository;
-import org.springframework.security.core.userdetails.User;
+import b.softuni.surfApp.user.SurfAppUserDetails;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -31,15 +31,14 @@ public class SurfAppUserDetailsService implements UserDetailsService {
     }
 
     private static UserDetails map(UserEntity userEntity) {
-        return User.withUsername(userEntity.getUsername())
-                .password(userEntity.getPassword())
-                .authorities(List.of())
-                .disabled(false) /*TODO*/
-                .build();
+        return new SurfAppUserDetails(
+                userEntity.getUsername(),
+                userEntity.getPassword(),
+                List.of(), /*TODO*/
+                userEntity.getFirstName(),
+                userEntity.getLastName()
+        );
     }
 
-//    private GrantedAuthority map(UserRoleEntity userRole) {
-//        return new SimpleGrantedAuthority("ROLE_" +
-//                userRole.getName());
-//    }
+
 }
