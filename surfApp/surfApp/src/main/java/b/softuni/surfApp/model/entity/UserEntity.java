@@ -53,9 +53,6 @@ public class UserEntity extends BaseEntity {
     @OneToOne
     private PictureEntity profilePicture;
 
-    @OneToMany
-    private Set<StoryEntity> stories;
-
     @ManyToOne(optional = false)
     private UserProfileType profile;
 
@@ -185,14 +182,6 @@ public class UserEntity extends BaseEntity {
 
     public void setProfilePicture(PictureEntity profilePicture) {
         this.profilePicture = profilePicture;
-    }
-
-    public Set<StoryEntity> getStories() {
-        return stories;
-    }
-
-    public void setStories(Set<StoryEntity> stories) {
-        this.stories = stories;
     }
 
 

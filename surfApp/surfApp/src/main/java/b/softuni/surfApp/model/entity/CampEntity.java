@@ -56,9 +56,6 @@ public class CampEntity extends BaseEntity {
     @ManyToOne
     private CampLocationEntity location;
 
-    @OneToMany
-    private Set<StoryEntity> stories;
-
     public CampEntity() {}
 
     public String getName() {
@@ -179,14 +176,6 @@ public class CampEntity extends BaseEntity {
 
     public void setPastParticipants(Set<UserEntity> pastParticipants) {
         this.pastParticipants = pastParticipants;
-    }
-
-    public Set<StoryEntity> getStories() {
-        return stories;
-    }
-
-    public void setStories(Set<StoryEntity> stories) {
-        this.stories = stories;
     }
 
     public CampLevel getLevel() {

@@ -1,16 +1,17 @@
-package b.softuni.surfApp.model.entity;
+package bg.softuni.surfApp.stories.model.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
 
 @Entity
 @Table(name = "stories")
-public class StoryEntity extends BaseEntity {
+public class StoryEntity  {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @Column(name = "creation_moment", nullable = false)
     private LocalDateTime creationMoment;
     @Column(name = "story_text", nullable = false, columnDefinition = "TEXT")
@@ -19,11 +20,17 @@ public class StoryEntity extends BaseEntity {
     @Column(nullable = false)
     private String campName;
     @Column(nullable = false)
-    private String creatorName;
+    private String authorName;
 
     public StoryEntity() {}
 
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
     public LocalDateTime getCreationMoment() {
         return creationMoment;
     }
@@ -48,11 +55,12 @@ public class StoryEntity extends BaseEntity {
         this.campName = campName;
     }
 
-    public String getCreatorName() {
-        return creatorName;
+    public String getAuthorName() {
+        return authorName;
     }
 
-    public void setCreatorName(String creatorName) {
-        this.creatorName = creatorName;
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
     }
+
 }

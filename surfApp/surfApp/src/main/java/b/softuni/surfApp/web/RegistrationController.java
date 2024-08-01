@@ -32,7 +32,7 @@ public class RegistrationController {
     @GetMapping("/register")
     public String register() {
        return "register";
-     //   throw new NullPointerException("sorry I made a bug!"); - checking the error page
+     //   throw new NullPointerException("sorry I made a bug!"); - checking theapp error page
     }
 
         @PostMapping("/register")
