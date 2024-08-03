@@ -1,14 +1,17 @@
 package bg.softuni.surfApp.stories.model.binding;
 
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDateTime;
 
 public class AddStoryBindingModel {
     private Long id;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime creationMoment;
     private String storyText;
     private String campName;
-    private String creatorName;
+    private String authorName;
 
     public AddStoryBindingModel() {}
 
@@ -28,12 +31,12 @@ public class AddStoryBindingModel {
         this.creationMoment = creationMoment;
     }
 
-    public String getCreatorName() {
-        return creatorName;
+    public String getAuthorName() {
+        return authorName;
     }
 
-    public void setCreatorName(String creatorName) {
-        this.creatorName = creatorName;
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
     }
 
     public Long getId() {
