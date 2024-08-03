@@ -33,7 +33,7 @@ public class StoryController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping()
+    @GetMapping
     public ResponseEntity<List<StoryBindingModel>> getAllStories() {
         return ResponseEntity.ok(
                 storyService.getAllStories()

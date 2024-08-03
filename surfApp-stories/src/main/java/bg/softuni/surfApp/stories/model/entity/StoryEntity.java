@@ -14,7 +14,7 @@ public class StoryEntity  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "creation_moment", nullable = false)
+    @Column
 //    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 //    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime creationMoment;
@@ -23,7 +23,7 @@ public class StoryEntity  {
 
     @Column(nullable = false)
     private String campName;
-    @Column(nullable = false)
+    @Column
     private String authorName;
 
     public StoryEntity() {}

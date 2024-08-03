@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface StoryRepository extends JpaRepository<StoryEntity, Long> {
+    @Override
+    void deleteById(Long storyId);
 }

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+    <title>SurfXperience</title>
+    <link rel="stylesheet" href="/css/reset-css.css"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/main.css"/>
+    <script src="/js/jquery-3.5.1.slim.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<div th:replace="~{fragments/navbar}">Navbar</div>
+<div class="container">
+    <h2 class="text-center text-white">Share your story</h2>
+    <form th:action="@{/stories/add}"
+          th:method="POST"
+          th:object="${addStoryBindingModel}"
+          class="main-form mx-auto col-md-8 d-flex flex-column justify-content-center">
+
+        <!--            <div class="form-group">-->
+        <!--                <label for="title" class="text-white font-weight-bold">Title</label>-->
+        <!--                <input id="title"/>-->
+        <!--                       th:field="*{title}"-->
+        <!--                       th:errorclass="is-invalid"-->
+        <!--                       type="text"-->
+        <!--                       class="form-control"-->
+        <!--                       placeholder="Title"/>-->
+        <!--                <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="invalid-feedback errors alert alert-danger">-->
+        <!--                    Error message!-->
+        <!--                </p>-->
+        <!--        </div>-->
+
+        <div class="form-group">
+            <label for="campName" class="text-white font-weight-bold">Camp name</label>
+            <input id="campName"
+                   th:field="*{campName}"
+                   th:errorclass="is-invalid"
+                   type="text"
+                   class="form-control"
+                   placeholder="Camp Name"/>
+            <p th:if="${#fields.hasErrors('campName')}" th:errors="*{campName}"
+               class="invalid-feedback errors alert alert-danger">
+                Error message!
+            </p>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-12 mb-3">
+                <label for="storyText" class="text-white font-weight-bold">Story</label>
+                <textarea id="storyText"
+                          th:field="*{storyText}"
+                          th:errorclass="is-invalid"
+                          class="form-control"
+                          placeholder="Write your story here..."
+                          rows="6"></textarea>
+                <p th:if="${#fields.hasErrors('storyText')}" th:errors="*{storyText}"
+                   class="invalid-feedback errors alert alert-danger">
+                    Error message!
+                </p>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col col-md-4">
+                <div class="button-holder d-flex">
+                    <input type="submit" class="btn btn-info btn-lg" value="Submit your story"/>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div>
+    <footer></footer>
+</div>
+
+</body>
+</html>

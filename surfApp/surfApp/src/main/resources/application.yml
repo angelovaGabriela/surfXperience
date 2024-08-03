@@ -19,5 +19,7 @@ spring:
         filter:
           enabled: true
 
-
+  stories:
+    api:
+      baseURL: "http://localhost:8081"
 
