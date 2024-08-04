@@ -106,8 +106,10 @@ form.main-form {
      color: #84d8de; /* Primary color */
 }
 .story-title:hover {
+     color: #32c5cc;
      text-decoration: underline;
 }
+
 
 .story-card {
      max-width: 800px;
@@ -125,4 +127,23 @@ form.main-form {
 }
 .card-text small {
      color: #6c757d;
+}
+
+.back-button {
+     display: block;
+     width: 200px;
+     margin: 20px auto;
+     padding: 10px;
+     text-align: center;
+     color: #fff;
+     background-color: #84d8de;
+     border: none;
+     border-radius: 5px;
+     font-size: 16px;
+     text-decoration: none;
+}
+.back-button:hover {
+     background-color: #ffffff;
+     color: #84d8de;
+     text-decoration: none;
 }
