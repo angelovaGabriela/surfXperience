@@ -20,8 +20,10 @@ public class StoryEntity  {
     private LocalDateTime creationMoment;
     @Column(name = "story_text", nullable = false, columnDefinition = "TEXT")
     private String storyText;
+    @Column
+    private String title;
 
-    @Column(nullable = false)
+    @Column
     private String campName;
     @Column
     private String authorName;
@@ -68,4 +70,11 @@ public class StoryEntity  {
         this.campName = campName;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 }

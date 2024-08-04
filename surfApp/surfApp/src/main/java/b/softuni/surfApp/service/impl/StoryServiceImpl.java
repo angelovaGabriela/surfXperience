@@ -1,6 +1,7 @@
 package b.softuni.surfApp.service.impl;
 
 import b.softuni.surfApp.model.binding.AddStoryBindingModel;
+import b.softuni.surfApp.model.view.FullStoryViewModel;
 import b.softuni.surfApp.model.view.StoryViewModel;
 import b.softuni.surfApp.repository.StoryRepository;
 import b.softuni.surfApp.service.StoryService;
@@ -41,6 +42,8 @@ public class StoryServiceImpl implements StoryService {
                 .retrieve();
     }
 
+
+
     @Override
     public List<StoryViewModel> getAllStories() {
         LOGGER.info("Get all stories...");
@@ -53,10 +56,22 @@ public class StoryServiceImpl implements StoryService {
                 .body(new ParameterizedTypeReference<>(){});
     }
 
+    @Override
+    public FullStoryViewModel fullStory(Long id) {
+        return storiesRestClient
+                .get()
+                .uri("http://localhost:8081/stories/{id}", id)
+                .accept(MediaType.APPLICATION_JSON)
+                .retrieve()
+                .body(FullStoryViewModel.class);
+
+    }
 
 
     @Override
     public void deleteStory(long storyId) {
     storyRepository.deleteById(storyId);
     }
+
+
 }

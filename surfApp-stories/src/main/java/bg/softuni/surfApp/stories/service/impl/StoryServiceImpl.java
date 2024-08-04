@@ -7,6 +7,7 @@ import bg.softuni.surfApp.stories.repository.StoryRepository;
 import bg.softuni.surfApp.stories.service.StoryService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -50,6 +51,7 @@ public class StoryServiceImpl implements StoryService {
 
         StoryBindingModel story = new StoryBindingModel();
         story.setId(storyEntity.getId());
+        story.setTitle(storyEntity.getTitle());
         story.setCreationMoment(storyEntity.getCreationMoment());
         story.setStoryText(storyEntity.getStoryText());
         story.setAuthorName(storyEntity.getAuthorName());
@@ -65,10 +67,11 @@ public class StoryServiceImpl implements StoryService {
     private static StoryEntity map(AddStoryBindingModel addStoryBindingModel) {
 
                 StoryEntity story = new StoryEntity();
-                story.setCreationMoment(addStoryBindingModel.getCreationMoment());
+                story.setCreationMoment(LocalDateTime.now());
                 story.setStoryText(addStoryBindingModel.getStoryText());
-                story.setAuthorName(addStoryBindingModel.getAuthorName());
-                story.setCampName(addStoryBindingModel.getCampName());
+                story.setAuthorName("Gabriela");
+                story.setTitle(addStoryBindingModel.getTitle());
+                story.setCampName("Adventure waves");
 
 
 

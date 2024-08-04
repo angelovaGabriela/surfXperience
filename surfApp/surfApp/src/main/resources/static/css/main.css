@@ -1,11 +1,28 @@
 body {
      background-image: url('/images/model_bebe.jpeg');
 
+     justify-content: center;
      background-position: center center;
      background-repeat: no-repeat;
      background-attachment: fixed;
      background-size: cover;
      background-color: #464646;
+
+}
+
+.welcome-message {
+     text-align: center;
+     color: #f8f9fa;
+     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.64);
+     text-transform: uppercase;
+     font-size: 3em;
+     font-weight: bold;
+     animation: fadeIn 2s ease-in-out;
+}
+
+@keyframes fadeIn {
+     0% { opacity: 0; transform: translateY(-20px); }
+     100% { opacity: 1; transform: translateY(0); }
 }
 
 .navbar .logo {
@@ -81,4 +98,31 @@ form.main-form {
      100% {
           transform: scaleY(1);
      }
+}
+
+.story-title {
+     font-weight: bold;
+     text-decoration: none;
+     color: #84d8de; /* Primary color */
+}
+.story-title:hover {
+     text-decoration: underline;
+}
+
+.story-card {
+     max-width: 800px;
+     margin: 0 auto;
+     background-color: #f8f9fa;
+}
+.card-header {
+     background-color: #84d8de;
+}
+.card-header h3 {
+     margin: 0;
+}
+.card-title {
+     font-weight: bold;
+}
+.card-text small {
+     color: #6c757d;
 }

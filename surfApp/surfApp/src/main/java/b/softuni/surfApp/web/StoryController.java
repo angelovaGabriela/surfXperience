@@ -6,10 +6,7 @@ import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -37,8 +34,6 @@ public class StoryController {
         return "story-add";
     }
 
-
-
     @PostMapping("add")
     public String addStory(@Valid AddStoryBindingModel addStoryBindingModel,
                            BindingResult bindingResult,
@@ -54,7 +49,14 @@ public class StoryController {
         return "redirect:/stories/all";
     }
 
+    @GetMapping("/{id}")
+    public String fullStory(@PathVariable("id") Long id,
+                            Model model) {
 
+        model.addAttribute("fullStory", storyService.fullStory(id));
+
+        return "fullStory";
+    }
 
 
 }

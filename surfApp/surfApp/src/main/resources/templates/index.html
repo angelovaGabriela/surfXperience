@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/css/reset-css.css"/>
     <link rel="stylesheet" href="/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="/css/main.css"/>
+    </style>
     <script src="/js/jquery-3.5.1.slim.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
 </head>
@@ -18,11 +19,10 @@
 
 <div th:replace="~{fragments/navbar}">Navbar</div>
 
-<div class="container-fluid">
-    <h5 class="text-center text-white mt-5">Welcome to SurfXperience,
-        <th:block th:text="${welcomeMessage}"></th:block>!
-    </h5>
-
+<div class="container-fluid" style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+    <div class="welcome-message">
+        Welcome to SurfXperience, <span th:text="${welcomeMessage}"></span>!
+    </div>
 </div>
 
 <div>

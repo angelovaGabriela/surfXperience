@@ -1,21 +1,20 @@
 package b.softuni.surfApp.model.view;
 
-
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 
-public class StoryViewModel {
+public class FullStoryViewModel {
 
     private Long id;
     private String title;
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime creationMoment;
     private String storyText;
     private String campName;
     private String authorName;
 
-    public StoryViewModel() {}
+    public FullStoryViewModel() {}
 
     public String getCampName() {
         return campName;
@@ -65,5 +64,3 @@ public class StoryViewModel {
         this.title = title;
     }
 }
-
-

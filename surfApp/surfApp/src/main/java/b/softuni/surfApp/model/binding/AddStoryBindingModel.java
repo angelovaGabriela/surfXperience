@@ -8,6 +8,7 @@ public class AddStoryBindingModel {
     private Long id;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime creationMoment;
+    private String title;
     private String storyText;
     private String campName;
     private String authorName;
@@ -52,5 +53,13 @@ public class AddStoryBindingModel {
 
     public void setStoryText(String storyText) {
         this.storyText = storyText;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

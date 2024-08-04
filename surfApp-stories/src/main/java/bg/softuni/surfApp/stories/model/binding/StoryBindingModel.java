@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 public class StoryBindingModel {
 
         private Long id;
-        //private String title;
+        private String title;
         @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
         private LocalDateTime creationMoment;
         private String storyText;
@@ -56,6 +56,13 @@ public class StoryBindingModel {
             this.storyText = storyText;
         }
 
+    public String getTitle() {
+        return title;
     }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+}
 
 
