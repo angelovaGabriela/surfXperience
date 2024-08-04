@@ -19,9 +19,22 @@
 <div th:replace="~{fragments/navbar}">Navbar</div>
 
 <div class="container-fluid">
-    <h5 class="text-center text-white mt-5">All stories</h5>
+    <h5 class="inspirational-message text-center mt-5">DIVE INTO THE VIBE..</h5>
+
+    <div class="stories-container d-flex flex-column align-items-center mt-5">
+        <div th:each="story : ${allStories}"
+             class="story mb-4 p-3 border rounded"
+             style="width: 60%; background-color: #f8f9fa;">
+            <h3 th:text="${story.campName}"></h3>
+            <p class="story-resumed"
+               th:text="${story.storyText}">This is a part of the story text...</p>
+        </div>
+    </div>
 
 </div>
+
+
+
 
 <div>
     <footer> </footer>
@@ -29,3 +42,4 @@
 
 </body>
 </html>
+
