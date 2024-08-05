@@ -11,52 +11,52 @@ import jakarta.validation.constraints.*;
 @FieldMatch(
         first = "password",
         second = "confirmPassword",
-        message = "Passwords do not match!"
+        message = "{passwords}"
 )
 public class UserRegisterBindingModel {
-    @NotBlank(message = "Username is required!")
-    @Size(min = 5, max = 20, message = "Username should be between 5 and 20 characters.")
-    @UniqueUsername(message = "The username is already taken!")
+    @NotBlank(message = "{username_empty}")
+    @Size(min = 5, max = 20, message = "{username_size}")
+    @UniqueUsername(message = "{username_unique}")
     private String username;
 
-    @NotBlank(message = "First name is required!")
-    @Size(min = 5, max = 20, message = "First name should be between 5 and 20 characters.")
+    @NotBlank(message = "{first_name_empty}")
+    @Size(min = 5, max = 20, message = "{first_name_size}")
     private String firstName;
 
-    @NotBlank(message = "Last name is required!")
-    @Size(min = 5, max = 20, message = "Last name should be between 5 and 20 characters.")
+    @NotBlank(message = "{last_name_empty}")
+    @Size(min = 5, max = 20, message = "{last_name_size}")
     private String lastName;
 
-    @NotBlank(message = "E-mail is required!")
-    @Email(message = "Must contain '@'!")
-    @UniqueUserEmail(message = "An account with this e-mail already exists!")
+    @NotBlank(message = "{email_empty}")
+    @Email(message = "{email_rule}")
+    @UniqueUserEmail(message = "{email_unique}")
     private String email;
 
 
-    @NotNull(message = "Age is required!")
-    @Positive(message = "Please, enter a positive number.")
-    @Min(value = 10, message = "You must be at least 10 years old.")
+    @NotNull(message ="{age_empty}")
+    @Positive(message = "{age_negative}")
+    @Min(value = 10, message = "{age_too_young}")
     private Integer age;
 
-    @NotNull(message = "Weight is required!")
-    @Positive(message = "Please, enter a positive number.")
+    @NotNull(message = "{weight_empty}")
+    @Positive(message = "{weight_negative}")
     private Double weightKg;
 
-    @NotNull(message = "Height is required!")
-    @Positive(message = "Please, enter a positive number.")
+    @NotNull(message = "{height_empty}")
+    @Positive(message = "{height_negative}")
     private Double heightCm;
 
-    @NotBlank(message = "Please, tell us more about yourself!")
+    @NotBlank(message = "{about}")
     private String about;
 
     @NotNull
     private UserProfileEnum profile;
 
-    @NotBlank(message = "Password is required!")
-    @Size(min = 5, max = 20, message = "Password should be between 5 and 20 characters.")
+    @NotBlank(message = "{password_empty}")
+    @Size(min = 5, max = 20, message = "{password_size}")
     private String password;
 
-    @NotBlank(message = "Password confirmation is required!")
+    @NotBlank(message = "{password_confirm_empty}")
     private String confirmPassword;
 
     public UserRegisterBindingModel() {}

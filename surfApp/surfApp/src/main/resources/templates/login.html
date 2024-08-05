@@ -19,30 +19,28 @@
 <div th:replace="~{fragments/navbar}">Navbar</div>
 
 <div class="container">
-  <h2 class="text-center text-white">Login</h2>
+  <h2 class="inspirational-message text-center mt-5" th:text="#{login_title}">Login</h2>
   <form th:action="@{/login}"
         th:method="POST"
         class="main-form mx-auto col-md-8 d-flex flex-column justify-content-center">
 
     <div class="form-group">
-      <label for="username" class="text-white font-weight-bold">Username</label>
+      <label for="username" class="text-white font-weight-bold" th:text="#{login_username}">Username</label>
       <input id="username"
               name="username"
               type="text"
               min="5"
               max="20"
-              class="form-control"
-              placeholder="Username"/>
+              class="form-control"/>
     </div>
     <div class="form-group">
-      <label for="password" class="text-white font-weight-bold">Password</label>
+      <label for="password" class="text-white font-weight-bold" th:text="#{login_password}">Password</label>
       <input id="password"
               name="password"
               type="password"
               min="5"
               max="20"
-              class="form-control"
-              placeholder="Password"/>
+              class="form-control"/>
     </div>
 
     <p th:if="${bad_credentials}" class="errors alert alert-danger">
@@ -50,9 +48,9 @@
     </p>
 
     <div class="row">
-      <div class="col col-md-4">
+      <div class="col justify-content-center">
         <div class="button-holder d-flex">
-          <input type="submit" class="btn btn-info btn-lg" value="Login"/>
+          <input type="submit" class="btn btn-info btn-lg" th:value="#{login_title}"/>
         </div>
       </div>
     </div>

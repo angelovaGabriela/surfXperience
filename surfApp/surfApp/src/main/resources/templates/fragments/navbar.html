@@ -27,57 +27,68 @@
             <ul class="navbar-nav mr-auto col-12 justify-content-between">
 
                 <li class="nav-item">
-                    <a class="nav-link"  href="/">SEARCH</a>
+                    <a class="nav-link" href="/" th:text="#{nav_bar_search}">SEARCH</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link"  href="/">ALL CAMPS</a>
+                    <a class="nav-link" href="/" th:text="#{nav_bar_all_camps}">ALL CAMPS</a>
                 </li>
-                <li class="nav-item" >
-                    <a class="nav-link"   href="/stories/all">STORIES</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="/stories/all" th:text="#{nav_bar_all_stories}">STORIES</a>
                 </li>
                 <th:block sec:authorize="isAuthenticated()">
-                <li class="nav-item" >
-                    <a class="nav-link"   href="/">ADD CAMP</a>
-                </li>
-                    <li class="nav-item" >
-                        <a class="nav-link"   href="/stories/add">ADD STORY</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/" th:text="#{nav_bar_add_camp}">ADD CAMP</a>
                     </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/">MY CAMPS</a>
-                </li>
-                <li class="nav-item dropdown" sec:authorize="hasRole('ADMIN')">
-                    <a class="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        ADMIN
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/">Action</a>
-                        <a class="dropdown-item" href="/">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/">Something else here</a>
-                    </div>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/stories/add" th:text="#{nav_bar_add_story}">ADD STORY</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/" th:text="#{nav_bar_my_camps}">MY CAMPS</a>
+                    </li>
+                    <li class="nav-item dropdown" sec:authorize="hasRole('ADMIN')">
+                        <a class="nav-link dropdown-toggle" href="/" th:text="#{nav_bar_admin}" id="navbarDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            ADMIN
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/">Action</a>
+                            <a class="dropdown-item" href="/">Another action</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/">Something else here</a>
+                        </div>
+                    </li>
                 </th:block>
                 <th:block sec:authorize="!isAuthenticated()">
-                <li class="nav-item">
-                    <a class="nav-link"
-                       href="/register">REGISTER</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link"
-                       href="/login">LOGIN</a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           href="/register" th:text="#{nav_bar_register}">REGISTER</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           href="/login" th:text="#{nav_bar_login}">LOGIN</a>
+                    </li>
                 </th:block>
                 <th:block sec:authorize="isAuthenticated()">
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript: document.logoutForm.submit()" th:text="#{nav_bar_logout}" role="menuitem">LOGOUT</a>
+                        <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+                            <input hidden type="submit" value="Sign Out"/>
+                        </form>
+                    </li>
+                </th:block>
+
                 <li class="nav-item">
-                    <a class="nav-link" href="javascript: document.logoutForm.submit()" role="menuitem">LOGOUT</a>
-                    <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
-                        <input hidden type="submit" value="Sign Out"/>
+                    <form th:method="GET">
+                        <select class="nav-link mr-2"
+                                id="lang"
+                                name="lang"
+                                onchange="this.form.submit()">
+                            <option th:value="en_US" th:selected="${#locale.toString()} == 'en_US'" >EN</option>
+                            <option th:value="bg_BG" th:selected="${#locale.toString()} == 'bg_BG'">BG</option>
+                        </select>
                     </form>
                 </li>
-
-                </th:block>
             </ul>
         </div>
     </nav>

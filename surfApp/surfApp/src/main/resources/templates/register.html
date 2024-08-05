@@ -2,200 +2,216 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-  <title>SurfXperience</title>
-  <link rel="stylesheet" href="/css/reset-css.css"/>
-  <link rel="stylesheet" href="/css/bootstrap.min.css"/>
-  <link rel="stylesheet" type="text/css" href="/css/main.css"/>
-  <script src="/js/jquery-3.5.1.slim.min.js"></script>
-  <script src="/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+    <title>SurfXperience</title>
+    <link rel="stylesheet" href="/css/reset-css.css"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/main.css"/>
+    <script src="/js/jquery-3.5.1.slim.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
 </head>
 
 <body>
 
 <div th:replace="~{fragments/navbar}">Navbar</div>
 <div class="container">
-  <h2 class="text-center text-white">Register User</h2>
-  <form  th:action="@{/register}"
-         th:method="POST"
-         th:object="${userModel}"
+    <h2 class="inspirational-message text-center mt-5" th:text="#{register_title}">FILL OUT OUR FORM</h2>
+    <form th:action="@{/register}"
+          th:method="POST"
+          th:object="${userModel}"
           class="main-form mx-auto col-md-8 d-flex flex-column justify-content-center">
 
-    <div class="row">
-      <div class="form-group col-md-6 mb-3">
-        <label for="username" class="text-white font-weight-bold">Username</label>
-        <input  id="username"
-                th:field="*{username}"
-                th:errorclass="is-invalid"
-               type="text"
-               min="5"
-               max="20"
-               class="form-control"
-               placeholder="Username"/>
-        <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="invalid-feedback errors alert alert-danger">
-          Error message!
-        </p>
-      </div>
-      <div class="form-group col-md-6 mb-3">
-        <label class="text-center text-white font-weight-bold" for="profile">Profile</label>
-        <select
-                id="profile"
-                name="profile"
-                th:field="*{profile}"
-                th:errorclass="is-invalid"
-                class="form-control">
-          <option value="0">Select profile type</option>
-          <option th:each="p : ${T(b.softuni.surfApp.model.enums.UserProfileEnum).values()}"
-                  th:value="${p}"
-                  th:text="${p.getLabel()}"
-                  th:selected="${p} == *{profile}">
-            Profile type
-          </option>
-        </select>
-        <p class="invalid-feedback errors alert alert-danger">
-          Please, select a profile type!
-        </p>
-      </div>
-    </div>
-
-      <div class="row">
-      <div class="form-group col-md-6 mb-3">
-        <label for="firstName" class="text-white font-weight-bold">First Name</label>
-        <input id="firstName"
-               th:field="*{firstName}"
-               th:errorclass="is-invalid"
-                type="text"
-                class="form-control"
-                placeholder="First name"/>
-        <p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="invalid-feedback errors alert alert-danger">
-          Error message!
-        </p>
-      </div>
-      <div class="form-group col-md-6 mb-3">
-        <label for="lastName" class="text-white font-weight-bold">Last Name</label>
-        <input id="lastName"
-               th:field="*{lastName}"
-               th:errorclass="is-invalid"
-               type="text"
-               class="form-control"
-               placeholder="Last name"/>
-        <p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="invalid-feedback errors alert alert-danger">
-        </p>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="form-group col-md-6 mb-3">
-        <label for="age" class="text-white font-weight-bold">Age</label>
-        <input id="age"
-               th:field="*{age}"
-               th:errorclass="is-invalid"
-               type="number"
-               class="form-control"
-               placeholder="Age"/>
-        <p th:if="${#fields.hasErrors('age')}" th:errors="*{age}" class="invalid-feedback errors alert alert-danger">
-          Error message!
-        </p>
-      </div>
-      <div class="form-group col-md-6 mb-3">
-        <label for="email" class="text-white font-weight-bold">E-mail</label>
-        <input id="email"
-               th:field="*{email}"
-               type="email"
-               th:errorclass="is-invalid"
-               class="form-control"
-               placeholder="Email"/>
-        <div class="invalid-feedback errors alert alert-danger">
-          <div th:each="err : ${#fields.errors('email')}"
-               th:text="${err}"> Error message!</div>
+        <div class="row">
+            <div class="form-group col-md-6 mb-3">
+                <label for="username"
+                       th:text="#{register_username}"
+                       class="text-white font-weight-bold">Username</label>
+                <input id="username"
+                       th:field="*{username}"
+                       th:errorclass="is-invalid"
+                       type="text"
+                       min="5"
+                       max="20"
+                       class="form-control"/>
+                <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}"
+                   class="invalid-feedback errors alert alert-danger">
+                    Error message!
+                </p>
+            </div>
+            <div class="form-group col-md-6 mb-3">
+                <label
+                        th:text="#{register_profile_type}"
+                        class="text-center text-white font-weight-bold" for="profile">Profile</label>
+                <select
+                        id="profile"
+                        name="profile"
+                        th:field="*{profile}"
+                        th:errorclass="is-invalid"
+                        class="form-control">
+                    <option value="0" th:text="#{register_profile_type_select}">Select profile type</option>
+                    <option th:each="p : ${T(b.softuni.surfApp.model.enums.UserProfileEnum).values()}"
+                            th:value="${p}"
+                            th:text="${p.getLabel()}"
+                            th:selected="${p} == *{profile}">
+                        Profile type
+                    </option>
+                </select>
+                <p th:text="#{profile_empty}"
+                        class="invalid-feedback errors alert alert-danger">
+                    Please, select a profile type!
+                </p>
+            </div>
         </div>
-      </div>
-    </div>
-      <div class="row">
-      <div class="form-group col-md-6 mb-3">
-        <label for="weightKg" class="text-white font-weight-bold">Weight</label>
-        <input id="weightKg"
-               th:field="*{weightKg}"
-               th:errorclass="is-invalid"
-               type="number"
-               class="form-control"
-               placeholder="Weight in kilograms"/>
-        <p th:if="${#fields.hasErrors('weightKg')}" th:errors="*{weightKg}" class="invalid-feedback errors alert alert-danger">
-          Error message!
-        </p>
-      </div>
-      <div class="form-group col-md-6 mb-3">
-        <label for="heightCm" class="text-white font-weight-bold">Height</label>
-        <input id="heightCm"
-               th:field="*{heightCm}"
-               th:errorclass="is-invalid"
-               type="number"
-               class="form-control"
-               placeholder="Height in centimeters"/>
-        <p th:if="${#fields.hasErrors('heightCm')}" th:errors="*{heightCm}" class="invalid-feedback errors alert alert-danger">
-          Error message!
-        </p>
-      </div>
-    </div>
-    <div class="row">
-    <div class="form-group col-md-6 mb-3">
-      <label for="about" class="text-white font-weight-bold">About you</label>
-      <input id="about"
-             th:field="*{about}"
-             th:errorclass="is-invalid"
-             type="text"
-             class="form-control"
-             placeholder="About you"/>
-      <p th:if="${#fields.hasErrors('about')}" th:errors="*{about}" class="invalid-feedback errors alert alert-danger">
-        Error message!
-      </p>
-    </div>
-    </div>
-    <div class="row">
-      <div class="form-group col-md-6 mb-3">
-        <label for="password" class="text-white font-weight-bold">Password</label>
-        <input id="password"
-               th:field="*{password}"
-               th:errorclass="is-invalid"
-               type="password"
-               min="5"
-               max="20"
-               class="form-control"
-               placeholder="Password"/>
-        <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="invalid-feedback errors alert alert-danger">
-          Error message!
-        </p>
-      </div>
 
-      <div class="form-group col-md-6 mb-3">
-        <label for="confirmPassword" class="text-white font-weight-bold">Confirm password</label>
-        <input id="confirmPassword"
-               th:field="*{confirmPassword}"
-               th:errorclass="is-invalid"
-               type="password"
-               class="form-control"
-               placeholder="Confirm password"/>
-        <p th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}" class="invalid-feedback errors alert alert-danger">
-          Error message!
-        </p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col col-md-4">
-        <div class="button-holder d-flex">
-          <input type="submit" class="btn btn-info btn-lg" value="Register"/>
+        <div class="row">
+            <div class="form-group col-md-6 mb-3">
+                <label for="firstName"
+                       th:text="#{register_first_name}"
+                       class="text-white font-weight-bold">First Name</label>
+                <input id="firstName"
+                       th:field="*{firstName}"
+                       th:errorclass="is-invalid"
+                       type="text"
+                       class="form-control"/>
+                <p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"
+                   class="invalid-feedback errors alert alert-danger">
+                    Error message!
+                </p>
+            </div>
+            <div class="form-group col-md-6 mb-3">
+                <label th:text="#{register_last_name}"
+                        for="lastName" class="text-white font-weight-bold">Last Name</label>
+                <input id="lastName"
+                       th:field="*{lastName}"
+                       th:errorclass="is-invalid"
+                       type="text"
+                       class="form-control"/>
+                <p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"
+                   class="invalid-feedback errors alert alert-danger">
+                </p>
+            </div>
         </div>
-      </div>
-    </div>
-  </form>
+
+        <div class="row">
+            <div class="form-group col-md-6 mb-3">
+                <label th:text="#{register_age}" for="age" class="text-white font-weight-bold">Age</label>
+                <input id="age"
+                       th:field="*{age}"
+                       th:errorclass="is-invalid"
+                       type="number"
+                       class="form-control"/>
+                <p th:if="${#fields.hasErrors('age')}" th:errors="*{age}"
+                   class="invalid-feedback errors alert alert-danger">
+                    Error message!
+                </p>
+            </div>
+            <div class="form-group col-md-6 mb-3">
+                <label th:text="#{register_email}"
+                for="email" class="text-white font-weight-bold">E-mail</label>
+                <input id="email"
+                       th:field="*{email}"
+                       type="email"
+                       th:errorclass="is-invalid"
+                       class="form-control"/>
+                <div class="invalid-feedback errors alert alert-danger">
+                    <div th:each="err : ${#fields.errors('email')}"
+                         th:text="${err}"> Error message!
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6 mb-3">
+                <label th:text="#{register_weight}" for="weightKg" class="text-white font-weight-bold">Weight</label>
+                <input id="weightKg"
+                       th:field="*{weightKg}"
+                       th:errorclass="is-invalid"
+                       type="number"
+                       class="form-control"
+                       th:placeholder="#{pl_weight}"/>
+                <p th:if="${#fields.hasErrors('weightKg')}" th:errors="*{weightKg}"
+                   class="invalid-feedback errors alert alert-danger">
+                    Error message!
+                </p>
+            </div>
+            <div class="form-group col-md-6 mb-3">
+                <label th:text="#{register_HEIGHT}"
+                       for="heightCm" class="text-white font-weight-bold">Height</label>
+                <input id="heightCm"
+                       th:field="*{heightCm}"
+                       th:errorclass="is-invalid"
+                       type="number"
+                       class="form-control"
+                       th:placeholder="#{pl_height}"/>
+                <p th:if="${#fields.hasErrors('heightCm')}" th:errors="*{heightCm}"
+                   class="invalid-feedback errors alert alert-danger">
+                    Error message!
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-12 mb-3">
+                <label  th:text="#{register_about}" for="about" class="text-white font-weight-bold">About you</label>
+                <textarea id="about"
+                          th:field="*{about}"
+                          th:errorclass="is-invalid"
+                          type="text"
+                          class="form-control"
+                          th:placeholder="#{pl_about_you}"
+                          rows="2"></textarea>
+
+                <p th:if="${#fields.hasErrors('about')}" th:errors="*{about}"
+                   class="invalid-feedback errors alert alert-danger">
+                    Error message!
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6 mb-3">
+                <label th:text="#{register_password}" for="password" class="text-white font-weight-bold">Password</label>
+                <input id="password"
+                       th:field="*{password}"
+                       th:errorclass="is-invalid"
+                       type="password"
+                       min="5"
+                       max="20"
+                       class="form-control"/>
+                <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+                   class="invalid-feedback errors alert alert-danger">
+                    Error message!
+                </p>
+            </div>
+
+            <div class="form-group col-md-6 mb-3">
+                <label th:text="#{register_confirm_password}"
+                       for="confirmPassword" class="text-white font-weight-bold">Confirm password</label>
+                <input id="confirmPassword"
+                       th:field="*{confirmPassword}"
+                       th:errorclass="is-invalid"
+                       type="password"
+                       class="form-control"/>
+                <p th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"
+                   class="invalid-feedback errors alert alert-danger">
+                    Error message!
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col justify-content-center">
+                <div class="button-holder d-flex">
+                    <input type="submit" class="btn btn-info btn-lg" th:value="#{register_button}"/>
+                </div>
+            </div>
+        </div>
+    </form>
 </div>
 
 
 <div>
-  <footer> </footer>
+    <footer></footer>
 </div>
 
 </body>

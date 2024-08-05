@@ -18,7 +18,7 @@
 
 <div th:replace="~{fragments/navbar}">Navbar</div>
 <div class="container">
-    <h2 class="text-center text-white">Share your story</h2>
+    <h2 th:text="#{title_page}" class="inspirational-message text-center mt-5">SHARE YOUR STORY</h2>
     <form th:action="@{/stories/add}"
           th:method="POST"
           th:object="${addStoryBindingModel}"
@@ -38,13 +38,13 @@
         <!--        </div>-->
 
         <div class="form-group">
-            <label for="title" class="text-white font-weight-bold">Title</label>
+            <label th:text="#{title_story}" for="title" class="text-white font-weight-bold">Title</label>
             <input id="title"
                    th:field="*{title}"
                    th:errorclass="is-invalid"
                    type="text"
                    class="form-control"
-                   placeholder="Title"/>
+                   th:placeholder="#{title_pl}"/>
             <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}"
                class="invalid-feedback errors alert alert-danger">
                 Error message!
@@ -53,12 +53,12 @@
 
         <div class="row">
             <div class="form-group col-md-12 mb-3">
-                <label for="storyText" class="text-white font-weight-bold">Story</label>
+                <label th:text="#{story_text}" for="storyText" class="text-white font-weight-bold">Story</label>
                 <textarea id="storyText"
                           th:field="*{storyText}"
                           th:errorclass="is-invalid"
                           class="form-control"
-                          placeholder="Write your story here..."
+                          th:placeholder="#{story_pl}"
                           rows="6"></textarea>
                 <p th:if="${#fields.hasErrors('storyText')}" th:errors="*{storyText}"
                    class="invalid-feedback errors alert alert-danger">
@@ -69,9 +69,9 @@
 
 
         <div class="row">
-            <div class="col col-md-4">
+            <div class="col justify-content-center">
                 <div class="button-holder d-flex">
-                    <input type="submit" class="btn btn-info btn-lg" value="Submit your story"/>
+                    <input type="submit" class="btn btn-info btn-lg" th:value="#{submit}"/>
                 </div>
             </div>
         </div>
