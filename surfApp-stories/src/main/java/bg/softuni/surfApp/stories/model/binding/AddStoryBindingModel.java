@@ -13,7 +13,7 @@ public class AddStoryBindingModel {
     private String storyText;
     private String campName;
     private String authorName;
-
+    private String originalLanguage;
     public AddStoryBindingModel() {}
 
     public String getCampName() {
@@ -62,5 +62,14 @@ public class AddStoryBindingModel {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getOriginalLanguage() {
+        return originalLanguage;
+    }
+
+    public AddStoryBindingModel setOriginalLanguage(String originalLanguage) {
+        this.originalLanguage = originalLanguage;
+        return this;
     }
 }

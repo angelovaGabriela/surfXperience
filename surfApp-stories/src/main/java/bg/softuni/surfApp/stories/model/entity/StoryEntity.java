@@ -27,6 +27,8 @@ public class StoryEntity  {
     private String campName;
     @Column
     private String authorName;
+    @Column
+    private String originalLanguage;
 
     public StoryEntity() {}
 
@@ -76,5 +78,14 @@ public class StoryEntity  {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getOriginalLanguage() {
+        return originalLanguage;
+    }
+
+    public StoryEntity setOriginalLanguage(String originalLanguage) {
+        this.originalLanguage = originalLanguage;
+        return this;
     }
 }

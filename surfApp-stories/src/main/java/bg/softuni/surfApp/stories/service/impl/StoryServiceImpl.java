@@ -56,6 +56,7 @@ public class StoryServiceImpl implements StoryService {
         story.setStoryText(storyEntity.getStoryText());
         story.setAuthorName(storyEntity.getAuthorName());
         story.setCampName(storyEntity.getCampName());
+        story.setOriginalLanguage(storyEntity.getOriginalLanguage());
 
 
 
@@ -69,13 +70,26 @@ public class StoryServiceImpl implements StoryService {
                 StoryEntity story = new StoryEntity();
                 story.setCreationMoment(LocalDateTime.now());
                 story.setStoryText(addStoryBindingModel.getStoryText());
-                story.setAuthorName("Gabriela");
+                story.setAuthorName("Милена");
                 story.setTitle(addStoryBindingModel.getTitle());
-                story.setCampName("Adventure waves");
+                story.setCampName("Сърф в Австралия");
+                story.setOriginalLanguage(language(addStoryBindingModel))
+
+       ;
 
 
+        return story;
 
-            return story;
+    }
 
+    private static String language(AddStoryBindingModel addStoryBindingModel) {
+        String language = "";
+        if (addStoryBindingModel.getStoryText().contains("g")){
+            language = "en";
+        } else if (addStoryBindingModel.getStoryText().contains("г")) {
+            language = "bg";
+        }
+
+        return language;
     }
 }

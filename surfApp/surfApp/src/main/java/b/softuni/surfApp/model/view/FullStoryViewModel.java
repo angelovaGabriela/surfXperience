@@ -13,6 +13,7 @@ public class FullStoryViewModel {
     private String storyText;
     private String campName;
     private String authorName;
+    private String originalLanguage;
 
     public FullStoryViewModel() {}
 
@@ -62,5 +63,14 @@ public class FullStoryViewModel {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getOriginalLanguage() {
+        return originalLanguage;
+    }
+
+    public FullStoryViewModel setOriginalLanguage(String originalLanguage) {
+        this.originalLanguage = originalLanguage;
+        return this;
     }
 }

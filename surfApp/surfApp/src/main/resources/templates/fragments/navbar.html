@@ -84,8 +84,8 @@
                                 id="lang"
                                 name="lang"
                                 onchange="this.form.submit()">
-                            <option th:value="en_US" th:selected="${#locale.toString()} == 'en_US'" >EN</option>
-                            <option th:value="bg_BG" th:selected="${#locale.toString()} == 'bg_BG'">BG</option>
+                            <option th:value="en" th:selected="${#locale.toString()} =='en'" >EN</option>
+                            <option th:value="bg" th:selected="${#locale.toString()} =='bg'">BG</option>
                         </select>
                     </form>
                 </li>

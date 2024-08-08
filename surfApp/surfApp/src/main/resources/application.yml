@@ -23,3 +23,5 @@ spring:
     api:
       baseURL: "http://localhost:8081"
 
+libretranslate:
+  url: http://localhost:5000
