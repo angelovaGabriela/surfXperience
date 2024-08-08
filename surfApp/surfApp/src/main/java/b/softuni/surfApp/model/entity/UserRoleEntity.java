@@ -21,15 +21,17 @@ public class UserRoleEntity {
         return id;
     }
 
-    public void setId(Long id) {
+    public UserRoleEntity setId(Long id) {
         this.id = id;
+        return this;
     }
 
     public @NotNull UserRoleEnum getRole() {
         return role;
     }
 
-    public void setRole(@NotNull UserRoleEnum role) {
+    public UserRoleEntity setRole(@NotNull UserRoleEnum role) {
         this.role = role;
+        return this;
     }
 }

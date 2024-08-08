@@ -88,174 +88,193 @@ public class UserEntity extends BaseEntity {
         return firstName + " " + lastName;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public List<UserRoleEntity> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<UserRoleEntity> roles) {
-        this.roles = roles;
-    }
-
     public Integer getAge() {
         return age;
     }
 
-    public void setAge(Integer age) {
+    public UserEntity setAge(Integer age) {
         this.age = age;
-    }
-
-    public Double getWeightKg() {
-        return weightKg;
-    }
-
-    public void setWeightKg(Double weightKg) {
-        this.weightKg = weightKg;
-    }
-
-    public Double getHeightCm() {
-        return heightCm;
-    }
-
-    public void setHeightCm(Double heightCm) {
-        this.heightCm = heightCm;
-    }
-
-    public String getAbout() {
-        return about;
-    }
-
-    public void setAbout(String about) {
-        this.about = about;
+        return this;
     }
 
     public Boolean getCanParticipate() {
         return canParticipate;
     }
 
-    public void setCanParticipate(Boolean canParticipate) {
+    public UserEntity setCanParticipate(Boolean canParticipate) {
         this.canParticipate = canParticipate;
-    }
-
-    public PictureEntity getProfilePicture() {
-        return profilePicture;
-    }
-
-    public void setProfilePicture(PictureEntity profilePicture) {
-        this.profilePicture = profilePicture;
-    }
-
-
-
-    public Set<EquipmentEntity> getEquipmentProvided() {
-        return equipmentProvided;
-    }
-
-    public void setEquipmentProvided(Set<EquipmentEntity> equipmentProvided) {
-        this.equipmentProvided = equipmentProvided;
-    }
-
-    public Set<EquipmentEntity> getEquipmentNeeded() {
-        return equipmentNeeded;
-    }
-
-    public void setEquipmentNeeded(Set<EquipmentEntity> equipmentNeeded) {
-        this.equipmentNeeded = equipmentNeeded;
+        return this;
     }
 
     public CampEntity getCurrentCamp() {
         return currentCamp;
     }
 
-    public void setCurrentCamp(CampEntity currentCamp) {
+    public UserEntity setCurrentCamp(CampEntity currentCamp) {
         this.currentCamp = currentCamp;
+        return this;
     }
 
-    public Set<CampEntity> getParticipated() {
-        return participated;
+    public String getEmail() {
+        return email;
     }
 
-    public void setParticipated(Set<CampEntity> participated) {
-        this.participated = participated;
-    }
-
-    public Set<CampEntity> getLikedCamps() {
-        return likedCamps;
-    }
-
-    public void setLikedCamps(Set<CampEntity> likedCamps) {
-        this.likedCamps = likedCamps;
-    }
-
-    public Set<CommentEntity> getMyComments() {
-        return myComments;
-    }
-
-    public void setMyComments(Set<CommentEntity> myComments) {
-        this.myComments = myComments;
-    }
-
-    public Set<CampEntity> getMyCamps() {
-        return myCamps;
-    }
-
-    public void setMyCamps(Set<CampEntity> myCamps) {
-        this.myCamps = myCamps;
-    }
-
-    public UserProfileType getProfile() {
-        return profile;
-    }
-
-    public void setProfile(UserProfileType profile) {
-        this.profile = profile;
+    public UserEntity setEmail(String email) {
+        this.email = email;
+        return this;
     }
 
     public boolean isEnabled() {
         return enabled;
     }
 
-    public void setEnabled(boolean enabled) {
+    public UserEntity setEnabled(boolean enabled) {
         this.enabled = enabled;
+        return this;
+    }
+
+    public Set<EquipmentEntity> getEquipmentNeeded() {
+        return equipmentNeeded;
+    }
+
+    public UserEntity setEquipmentNeeded(Set<EquipmentEntity> equipmentNeeded) {
+        this.equipmentNeeded = equipmentNeeded;
+        return this;
+    }
+
+    public Set<EquipmentEntity> getEquipmentProvided() {
+        return equipmentProvided;
+    }
+
+    public UserEntity setEquipmentProvided(Set<EquipmentEntity> equipmentProvided) {
+        this.equipmentProvided = equipmentProvided;
+        return this;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public UserEntity setFirstName(String firstName) {
+        this.firstName = firstName;
+        return this;
+    }
+
+    public Double getHeightCm() {
+        return heightCm;
+    }
+
+    public UserEntity setHeightCm(Double heightCm) {
+        this.heightCm = heightCm;
+        return this;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public UserEntity setLastName(String lastName) {
+        this.lastName = lastName;
+        return this;
+    }
+
+    public Set<CampEntity> getLikedCamps() {
+        return likedCamps;
+    }
+
+    public UserEntity setLikedCamps(Set<CampEntity> likedCamps) {
+        this.likedCamps = likedCamps;
+        return this;
+    }
+
+    public Set<CampEntity> getMyCamps() {
+        return myCamps;
+    }
+
+    public UserEntity setMyCamps(Set<CampEntity> myCamps) {
+        this.myCamps = myCamps;
+        return this;
+    }
+
+    public Set<CommentEntity> getMyComments() {
+        return myComments;
+    }
+
+    public UserEntity setMyComments(Set<CommentEntity> myComments) {
+        this.myComments = myComments;
+        return this;
+    }
+
+    public Set<CampEntity> getParticipated() {
+        return participated;
+    }
+
+    public UserEntity setParticipated(Set<CampEntity> participated) {
+        this.participated = participated;
+        return this;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public UserEntity setPassword(String password) {
+        this.password = password;
+        return this;
+    }
+
+    public UserProfileType getProfile() {
+        return profile;
+    }
+
+    public UserEntity setProfile(UserProfileType profile) {
+        this.profile = profile;
+        return this;
+    }
+
+    public PictureEntity getProfilePicture() {
+        return profilePicture;
+    }
+
+    public UserEntity setProfilePicture(PictureEntity profilePicture) {
+        this.profilePicture = profilePicture;
+        return this;
+    }
+
+    public List<UserRoleEntity> getRoles() {
+        return roles;
+    }
+
+    public UserEntity setRoles(List<UserRoleEntity> roles) {
+        this.roles = roles;
+        return this;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public UserEntity setUsername(String username) {
+        this.username = username;
+        return this;
+    }
+
+    public Double getWeightKg() {
+        return weightKg;
+    }
+
+    public UserEntity setWeightKg(Double weightKg) {
+        this.weightKg = weightKg;
+        return this;
+    }
+
+    public String getAbout() {
+        return about;
+    }
+
+    public UserEntity setAbout(String about) {
+        this.about = about;
+        return this;
     }
 
     @Override
