@@ -14,7 +14,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
 
-import static b.softuni.surfApp.service.impl.SurfAppUserDetailServiceTest.TEST_USER_NAME;
+import static b.softuni.surfApp.service.impl.SurfAppUserDetailServiceTest.TEST_USERNAME;
 
 public class TestUserRepository implements UserRepository {
     @Override
@@ -25,10 +25,10 @@ public class TestUserRepository implements UserRepository {
 
     @Override
     public Optional<UserEntity> findByUsername(String username) {
-        if (Objects.equals(username, TEST_USER_NAME)) {
+        if (Objects.equals(username, TEST_USERNAME)) {
             return Optional.of(
                     new UserEntity()
-                            .setUsername(TEST_USER_NAME)
+                            .setUsername(TEST_USERNAME)
                             .setPassword("puggcandia")
                             .setFirstName("Gabriela")
                             .setLastName("Angelova")
