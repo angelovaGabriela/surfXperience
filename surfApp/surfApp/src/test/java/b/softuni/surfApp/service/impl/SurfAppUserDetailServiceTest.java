@@ -8,7 +8,9 @@ import b.softuni.surfApp.user.SurfAppUserDetails;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -17,20 +19,20 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.mockito.Mockito.when;
-
+@ExtendWith(MockitoExtension.class)
 public class SurfAppUserDetailServiceTest {
 
-    public static final String TEST_USERNAME = "testUser";
-    public static final String TEST_FAKE_USERNAME = "pug";
+    private static final String TEST_USERNAME = "testUser";
+    private static final String TEST_FAKE_USERNAME = "pug";
 
 
     private SurfAppUserDetailsService toTest;
+    @Mock
     private  UserRepository mockUserRepository;
 
     @BeforeEach
     public void setUp() {
-         mockUserRepository = Mockito.mock(UserRepository.class);
-        toTest = new SurfAppUserDetailsService(mockUserRepository);
+         toTest = new SurfAppUserDetailsService(mockUserRepository);
     }
 
     @Test
