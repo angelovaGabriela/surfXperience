@@ -24,3 +24,7 @@ spring:
 
 libretranslate:
   url: http://localhost:5000
+
+jwt:
+  secret: ${JWT_KEY:Pc1UXh9RTrU12Nvlu3UP0SuapmuX8vD3FYHZEs}
+  expiration: ${JWT_EXPIRATION:60000}

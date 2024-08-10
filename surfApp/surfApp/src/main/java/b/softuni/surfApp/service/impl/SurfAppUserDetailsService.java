@@ -33,13 +33,12 @@ public class SurfAppUserDetailsService implements UserDetailsService {
     }
 
     private static UserDetails map(UserEntity userEntity) {
-        return new SurfAppUserDetails(
+        return new SurfAppUserDetails(userEntity.getUuid(),
                 userEntity.getUsername(),
                 userEntity.getPassword(),
                 userEntity.getRoles().stream().map(UserRoleEntity::getRole).map(SurfAppUserDetailsService::map).toList(),
                 userEntity.getFirstName(),
-                userEntity.getLastName()
-        );
+                userEntity.getLastName());
     }
 
     private static GrantedAuthority map(UserRoleEnum role) {
