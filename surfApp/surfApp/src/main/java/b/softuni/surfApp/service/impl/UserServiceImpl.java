@@ -3,7 +3,6 @@ package b.softuni.surfApp.service.impl;
 import b.softuni.surfApp.model.binding.UserRegisterBindingModel;
 import b.softuni.surfApp.model.entity.UserEntity;
 import b.softuni.surfApp.model.entity.UserProfileType;
-import b.softuni.surfApp.model.enums.UserProfileEnum;
 import b.softuni.surfApp.repository.UserProfileRepository;
 import b.softuni.surfApp.repository.UserRepository;
 import b.softuni.surfApp.service.UserService;
@@ -11,8 +10,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.Arrays;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -36,18 +33,7 @@ public class UserServiceImpl implements UserService {
         this.userDetailsService = userDetailsService;
     }
 
-    @Override
-    public void initProfiles() {
 
-        if (this.userProfileRepository.count() == 0) {
-            Arrays.stream(UserProfileEnum.values())
-                    .forEach(userProfile -> {
-                        UserProfileType profile = new UserProfileType();
-                        profile.setProfileType(userProfile);
-                        this.userProfileRepository.save(profile);
-                    });
-        }
-    }
 
     @Override
     public void register(UserRegisterBindingModel userModel) {
@@ -56,10 +42,6 @@ public class UserServiceImpl implements UserService {
 
         UserProfileType byProfileType = this.userProfileRepository.findByProfileType(userModel.getProfile());
         user.setProfile(byProfileType);
-
-//        UserRoleEntity role = new UserRoleEntity();
-////TODO: assign user role properly (now I am adding new Admin User User)
-//        //https://www.baeldung.com/role-and-privilege-for-spring-security-registration
 
         this.userRepository.save(user);
 //        login(user);

@@ -2,11 +2,11 @@ package b.softuni.surfApp.model.entity;
 
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.JdbcTypeCode;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
+
+import static java.sql.Types.VARCHAR;
 
 
 @Entity
@@ -15,6 +15,11 @@ public class UserEntity extends BaseEntity {
 
     @Column(nullable = false, unique = true)
     private String username;
+
+    @UUIDSequence
+    @JdbcTypeCode(VARCHAR)
+    private UUID uuid;
+
     @Column(nullable = false)
     private String password;
 
@@ -274,6 +279,15 @@ public class UserEntity extends BaseEntity {
 
     public UserEntity setAbout(String about) {
         this.about = about;
+        return this;
+    }
+
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public UserEntity setUuid(UUID uuid) {
+        this.uuid = uuid;
         return this;
     }
 

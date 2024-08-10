@@ -30,7 +30,9 @@ public class StoryController {
     @DeleteMapping("/{id}")
     public ResponseEntity<StoryBindingModel> deleteStory(@PathVariable("id") Long id) {
         storyService.deleteStory(id);
-        return ResponseEntity.ok().build();
+        return ResponseEntity
+                .noContent()
+                .build();
     }
 
     @GetMapping
